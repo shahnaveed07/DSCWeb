@@ -4,22 +4,27 @@
 
   <url>
     <loc>https://dscweb.me/</loc>
-  </url>
-
-  <url>
-    <loc>https://dscweb.me/pages/freepanel.html</loc>
+    <priority>1.0</priority>
   </url>
 
   <url>
     <loc>https://dscweb.me/pages/Ulogin.html</loc>
+    <priority>0.9</priority>
+  </url>
+
+  <url>
+    <loc>https://dscweb.me/pages/Alogin.html</loc>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://dscweb.me/pages/freepanel.html</loc>
+    <priority>0.9</priority>
   </url>
 
   <url>
     <loc>https://dscweb.me/pages/checkout.html</loc>
-  </url>
-
-  <url>
-    <loc>https://dscweb.me/pages/Udash.html</loc>
+    <priority>0.9</priority>
   </url>
 
 </urlset>
