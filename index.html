@@ -35,6 +35,18 @@
       href="images/dsclogo.png"
       fetchpriority="high"
     />
+    <script>
+      (function () {
+        try {
+          var theme = localStorage.getItem("siteTheme");
+          if (theme !== "light" && theme !== "dark") {
+            theme = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+          }
+          document.documentElement.setAttribute("data-theme", theme);
+          document.documentElement.style.colorScheme = theme;
+        } catch (e) {}
+      })();
+    </script>
 
     <meta property="og:site_name" content="Dark Skull Corporation" />
     <meta property="og:title" content="Dark Skull Corporation (DSC) | Secure Premium Gaming Utilities" />

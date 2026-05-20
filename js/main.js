@@ -134,15 +134,17 @@ function revealProtectedBody() {
   if (!document.body) return;
 
   document.body.style.display = "";
+  document.body.style.opacity = "0";
+  document.body.style.transform = "translateY(4px)";
 
   // 🔥 existing animation hook
   
-  document.body.style.transition = "all 0.4s ease";
+  document.body.style.transition = "opacity 0.24s ease, transform 0.24s ease";
 
-  setTimeout(() => {
+  requestAnimationFrame(() => {
     document.body.style.opacity = "1";
     document.body.style.transform = "translateY(0)";
-  }, 50);
+  });
 }
 
 function redirectForRole(role) {
@@ -617,6 +619,7 @@ function resolveInitialTheme() {
 
 function setTheme(theme) {
   document.documentElement.setAttribute("data-theme", theme);
+  document.documentElement.style.colorScheme = theme;
   document.querySelectorAll("[data-theme-toggle]").forEach((button) => {
     const label = theme === "dark" ? "Light Mode" : "Dark Mode";
     button.textContent = label;
@@ -1360,6 +1363,7 @@ function initCheckoutPage() {
   const checkoutForm = document.getElementById("checkoutForm");
   const proofInput = document.getElementById("paymentProofImg");
   const proofGroup = document.getElementById("paymentProofGroup");
+  const paymentBox = document.querySelector(".instruction-box");
   const allowedProofTypes = new Set(["image/png", "image/jpeg", "image/jpg"]);
 
   if (!selectedPanel || basePrices[selectedPanel] === undefined) {
@@ -1416,8 +1420,6 @@ function initCheckoutPage() {
     // 🔥 3. Yahan Ho Raha Hai BasePrice * Multiplier
     const totalUsd = basePriceUSD * multiplier;
     const totalInr = totalUsd * usdToInr;
-
-    const paymentBox = document.querySelector(".instruction-box");
 
     displayPrice.textContent = `USD ${totalUsd} (${totalInr} INR)`;
 
@@ -1677,14 +1679,14 @@ async function fetchFreePanelPageStatus() {
 
 function startKeepAlivePing() {
 setInterval(async () => {
+  if (document.hidden) return;
   try {
     await fetch(apiUrl("/api/public/free-panel"), {
       method: "GET",
       cache: "no-store"
     });
-    console.log("Ping sent");
   } catch (e) {
-    console.warn("Ping failed");
+    void e;
   }
 }, 2 * 60 * 1000);
 }
@@ -1939,6 +1941,7 @@ function renderUsersTable(users) {
   const tbody = document.getElementById("OwnerDBBody");
   if (!tbody) return;
   tbody.innerHTML = "";
+  const fragment = document.createDocumentFragment();
 
   users.forEach((user) => {
     const id = Number(readObjectValue(user, ["id", "Id"], 0));
@@ -1967,8 +1970,10 @@ function renderUsersTable(users) {
     actionCell.appendChild(editBtn);
     row.appendChild(actionCell);
 
-    tbody.appendChild(row);
+    fragment.appendChild(row);
   });
+
+  tbody.appendChild(fragment);
 }
 
 async function loadAdminDash() {
@@ -2025,6 +2030,7 @@ async function loadPendingOrders() {
     }
 
     tbody.innerHTML = "";
+    const fragment = document.createDocumentFragment();
     orders.forEach((order) => {
       const row = document.createElement("tr");
 
@@ -2062,8 +2068,9 @@ async function loadPendingOrders() {
       actionCell.appendChild(approveBtn);
       actionCell.appendChild(rejectBtn);
       row.appendChild(actionCell);
-      tbody.appendChild(row);
+      fragment.appendChild(row);
     });
+    tbody.appendChild(fragment);
   } catch (err) {
     tbody.innerHTML = '<tr><td colspan="7" class="text-center title-danger">Failed to load orders.</td></tr>';
   }
@@ -2479,25 +2486,37 @@ function sortKeysForTable(keys) {
 }
 
 function bindBulkDeleteLogic() {
-  const selectAllCheckbox = document.getElementById("selectAllCheckbox");
+  const head = document.getElementById("dbTableHead");
+  const body = document.getElementById("dbTableBody");
   const bulkDeleteBtn = document.getElementById("bulkDeleteBtn");
 
-  if (selectAllCheckbox) {
-    selectAllCheckbox.addEventListener("change", (event) => {
-      document.querySelectorAll(".row-checkbox").forEach((checkbox) => {
-        checkbox.checked = event.target.checked;
+  if (head && !head.dataset.bulkDelegateBound) {
+    head.dataset.bulkDelegateBound = "true";
+    head.addEventListener("change", (event) => {
+      const target = event.target;
+      if (!(target instanceof HTMLInputElement) || target.id !== "selectAllCheckbox") return;
+      if (!body) return;
+
+      body.querySelectorAll(".row-checkbox").forEach((checkbox) => {
+        checkbox.checked = target.checked;
       });
       updateBulkDeleteState();
     });
   }
 
-  document.querySelectorAll(".row-checkbox").forEach((checkbox) => {
-    checkbox.addEventListener("change", updateBulkDeleteState);
-  });
+  if (body && !body.dataset.bulkDelegateBound) {
+    body.dataset.bulkDelegateBound = "true";
+    body.addEventListener("change", (event) => {
+      const target = event.target;
+      if (target instanceof HTMLInputElement && target.classList.contains("row-checkbox")) {
+        updateBulkDeleteState();
+      }
+    });
+  }
 
   if (bulkDeleteBtn) {
     bulkDeleteBtn.onclick = () => {
-      const ids = Array.from(document.querySelectorAll(".row-checkbox:checked"))
+      const ids = Array.from(body ? body.querySelectorAll(".row-checkbox:checked") : [])
         .map((checkbox) => checkbox.getAttribute("data-id"))
         .filter(Boolean);
 
@@ -2545,7 +2564,8 @@ function bindBulkDeleteLogic() {
 }
 
 function updateBulkDeleteState() {
-  const checkedRows = document.querySelectorAll(".row-checkbox:checked").length;
+  const body = document.getElementById("dbTableBody");
+  const checkedRows = body ? body.querySelectorAll(".row-checkbox:checked").length : 0;
   const bulkDeleteBtn = document.getElementById("bulkDeleteBtn");
   const bulkDeleteCount = document.getElementById("bulkDeleteCount");
   const selectAllCheckbox = document.getElementById("selectAllCheckbox");
@@ -2553,8 +2573,9 @@ function updateBulkDeleteState() {
   if (bulkDeleteCount) bulkDeleteCount.textContent = String(checkedRows);
   toggleControlVisibility(bulkDeleteBtn, checkedRows > 0);
 
-  if (selectAllCheckbox && checkedRows === 0) {
-    selectAllCheckbox.checked = false;
+  if (selectAllCheckbox) {
+    const totalRows = body ? body.querySelectorAll(".row-checkbox").length : 0;
+    selectAllCheckbox.checked = totalRows > 0 && checkedRows === totalRows;
   }
 }
 
@@ -2584,6 +2605,7 @@ function renderDbTable(data) {
   const uniqueKeys = new Set();
   safeData.forEach((row) => Object.keys(row).forEach((key) => uniqueKeys.add(key)));
   const keys = sortKeysForTable(Array.from(uniqueKeys));
+  const bodyFragment = document.createDocumentFragment();
 
   const headerRow = document.createElement("tr");
   if (currentDbTable !== "settings") {
@@ -2654,9 +2676,10 @@ function renderDbTable(data) {
     actionCell.appendChild(editBtn);
     row.appendChild(actionCell);
 
-    body.appendChild(row);
+    bodyFragment.appendChild(row);
   });
 
+  body.appendChild(bodyFragment);
   bindBulkDeleteLogic();
 }
 
@@ -3016,6 +3039,9 @@ function deleteDbRecord(id) {
 }
 
 function bindOwnerDatabaseControls() {
+  const dbSearchInput = document.getElementById("dbSearchInput");
+  let searchTimer = null;
+
   document.getElementById("systemControlsForm")?.addEventListener("submit", (event) => {
     event.preventDefault();
     saveSystemControls();
@@ -3029,10 +3055,14 @@ function bindOwnerDatabaseControls() {
     currentDbTable = event.target.value;
     loadDbData();
   });
-  document.getElementById("dbSearchInput")?.addEventListener("input", (event) => {
+  dbSearchInput?.addEventListener("input", (event) => {
     searchQuery = event.target.value;
     currentPage = 1;
-    applyFilterAndPagination();
+
+    if (searchTimer) window.clearTimeout(searchTimer);
+    searchTimer = window.setTimeout(() => {
+      applyFilterAndPagination();
+    }, 120);
   });
   document.getElementById("prevPageBtn")?.addEventListener("click", () => {
     currentPage -= 1;
