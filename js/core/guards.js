@@ -176,11 +176,12 @@ try {
   if (homeBtn) {
     // Backend se capital ya small 's' dono handle karne ke liye
     const showBtn = data.showHomeDownloadBtn === true || data.ShowHomeDownloadBtn === true;
+    homeBtn.style.removeProperty("display");
     if (showBtn) {
-      homeBtn.style.display = "inline-flex";
+      homeBtn.classList.remove("d-none");
       homeBtn.href = data.freeLink || data.FreeLink || "#"; // Link wahi free panel wali hogi
     } else {
-      homeBtn.style.display = "none";
+      homeBtn.classList.add("d-none");
     }
   }
   // 🔥 NAYA CODE END 🔥
