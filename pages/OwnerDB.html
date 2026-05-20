@@ -1,0 +1,120 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Database Manager | Owner</title>
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="icon" href="../images/dsclogo.png">
+  <style id="page-guard-style">body { display: none; }</style>
+</head>
+<body>
+  <header class="site-header">
+    <a class="logo-mark" href="../index.html">
+      <img src="../images/dsclogo.png" alt="DSC" class="header-logo-img">
+      <h1 class="auth-title title-danger">Owner Database Manager</h1>
+    </a>
+    <div class="header-actions">
+      <button type="button" id="theme-toggle-btn" class="btn btn-neutral theme-toggle" data-theme-toggle>Light Mode</button>
+      <a class="btn btn-outline" href="Adash.html">Back to Dashboard</a>
+    </div>
+  </header>
+
+  <main class="page-shell">
+    
+    <section class="panel panel-danger mb-25">
+      <div class="panel-header mb-0">
+        <div class="stack">
+          <h3 class="m-0">Quick System Controls</h3>
+        </div>
+        <button id="maintenanceToggleBtn" class="btn btn-neutral" type="button">Loading Status...</button>
+      </div>
+    </section>
+    <!-- Database manager section -->
+    <section class="panel panel-danger">
+      <div class="panel-header">
+        <div class="input-group w-250 mb-0">
+          <select id="dbTableSelect" class="db-search-input w-200 flex-unset">
+          <option value="users"> Users Table</option>
+          <option value="freeusers">Free Panel Table</option> <option value="keys">License Keys DB</option>
+          <option value="orders">Orders</option>
+          <option value="admins">Admin Accounts</option>
+          <option value="settings">System Settings</option>
+          <option value="freeSettings">Free Panel Settings</option>
+        </select>
+        </div>
+        <div class="header-actions">
+          <button id="bulkDeleteBtn" class="btn btn-outline btn-outline-danger d-none" type="button">
+            Delete Selected (<span id="bulkDeleteCount">0</span>)
+          </button>
+        </div>
+      </div>
+
+      <div class="flex-between-wrap my-15">
+        <input type="text" id="dbSearchInput" placeholder="🔍 Search username, HWID, or plan..." class="db-search-input">
+
+        <div class="flex-center-gap">
+          <button id="prevPageBtn" class="btn btn-outline" type="button">Prev</button>
+          <span id="pageInfoText" class="text-muted fw-bold">Page 1 of 1</span>
+          <button id="nextPageBtn" class="btn btn-outline" type="button">Next</button>
+        </div>
+      </div>
+
+      <p class="muted">View and edit records across all database tables. Owner access only.</p>
+
+      <div class="table-wrap">
+        <table>
+          <thead id="dbTableHead">
+            <tr>
+              <th>Loading...</th>
+            </tr>
+          </thead>
+          <tbody id="dbTableBody">
+            <tr>
+              <td>Loading records...</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+
+  <!-- Owner edit modal block -->
+  <div id="ownerEditModal" class="modal-overlay" role="dialog" aria-modal="true" aria-hidden="true">
+    <div class="modal-card">
+      <div class="modal-top">
+        <h2 class="modal-title" id="ownerEditTitle">Edit Record</h2>
+        <button type="button" id="closeOwnerEdit" class="icon-btn" aria-label="Close owner edit dialog">&times;</button>
+      </div>
+      <form id="ownerEditForm" class="stack" autocomplete="off">
+        <div id="ownerEditFields" class="stack"></div>
+        <button type="submit" class="btn btn-danger">Save Database Changes</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Shared delete confirmation block -->
+  <div id="deleteConfirmModal" class="modal-overlay" role="dialog" aria-modal="true" aria-hidden="true">
+    <div class="modal-card modal-card-center modal-card-danger">
+      <div class="modal-top modal-top-center">
+        <div class="modal-icon-box modal-icon-danger">
+          <svg width="24" height="24" fill="none" stroke="#ef4444" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path>
+          </svg>
+        </div>
+      </div>
+      <h2 class="modal-title modal-title-large title-danger">Are you sure?</h2>
+      <p class="muted modal-desc">Do you really want to permanently delete <strong id="deleteTargetUsername" class="highlight-text"></strong>? This action cannot be undone.</p>
+
+      <div class="modal-btn-group">
+        <button type="button" id="cancelDeleteBtn" class="btn btn-neutral">Cancel</button>
+        <button type="button" id="confirmDeleteBtn" class="btn btn-danger">Yes, Delete!</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="../js/main.js" defer></script>
+</body>
+</html>
+

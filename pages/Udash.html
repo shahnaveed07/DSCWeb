@@ -1,0 +1,104 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>User Dashboard | Dark Skull Corporation</title>
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="icon" href="../images/dsclogo.png">
+  <style id="page-guard-style">body { display: none; }</style>
+</head>
+<body>
+  <header class="site-header">
+    <a class="logo-mark" href="../index.html">
+      <img src="../images/dsclogo.png" alt="DSC" class="header-logo-img">
+      <span class="logo-text">Dark Skull Corporation</span>
+    </a>
+    <div class="header-actions">
+      <button type="button" id="theme-toggle-btn" class="btn btn-neutral theme-toggle" data-theme-toggle>Light Mode</button>
+      <button type="button" class="btn btn-outline js-logout">Logout</button>
+    </div>
+  </header>
+
+ <main class="page-shell">
+    <section class="panel">
+      <div class="panel-header">
+        <h1 class="auth-title">User Dashboard</h1>
+      </div>
+      <p class="muted">Welcome to your secure account center.</p>
+
+      <div id="dashboardAlertBox" class="alert-box alert-warning d-none">
+          <div class="alert-content">
+              <div>
+                  <h4 class="text-warning mb-5 mt-0" id="alertHeading">⚠️ Action Required</h4>
+                  <p class="muted text-small mb-0" id="dashboardAlertText">Your subscription is pending or has expired.</p>
+              </div>
+              <a href="../index.html" class="btn btn-primary text-small">View Store & Renew</a>
+          </div>
+      </div>
+
+      <div class="stats-grid">
+        <article class="stat-card">
+          <p class="stat-label">Username</p>
+          <p class="stat-value text-secondary" id="dashUsername">-</p>
+        </article>
+        
+        <article class="stat-card">
+          <p class="stat-label">Current Plan</p>
+          <p class="stat-value font-orbitron text-gold" id="dashPlan">-</p>
+        </article>
+
+        <article class="stat-card">
+          <p class="stat-label">Expiry Date</p>
+          <div class="flex-center-gap mt-5">
+            <span id="expiryIcon" class="text-small">⏳</span>
+            <p class="stat-value text-md mb-0" id="dashExpiry">-</p>
+          </div>
+        </article>
+
+        <article class="stat-card">
+          <p class="stat-label">Device Lock (HWID)</p>
+          <p class="stat-value text-small muted mt-10 mb-0">🔒 Locked to this PC</p>
+        </article>
+      </div>
+
+      <h2 class="auth-title text-secondary text-md mt-25 mb-10">Software Access & Keys</h2>
+      <div class="stats-grid" id="tracking-section">
+        
+        <article class="stat-card border-surface" id="status-card">
+          <p class="stat-label">Account Status</p>
+          <div class="flex-center-gap mt-5">
+            <span id="statusIcon" class="text-lg d-block">
+              <span class="skeleton-anim sk-dash-icon"></span>
+            </span>
+            <p class="stat-value text-warning text-xl mb-0 w-full" id="dashOrderStatus">
+              <span class="skeleton-anim sk-dash-status"></span>
+            </p>
+          </div>
+        </article>
+
+        <article class="stat-card border-surface" id="key-card">
+          <p class="stat-label">Your License Key <span id="dashKeyStatus" class="badge d-none sk-badge"></span></p>
+          
+          <div class="key-display-box">
+            <p class="stat-value word-break font-orbitron text-md mb-0 text-white w-full" id="dashOrderKey">
+              <span class="skeleton-anim sk-dash-key"></span>
+            </p>
+          </div>
+          
+          <button type="button" id="copyDashKeyBtn" class="btn btn-neutral btn-full mt-10 text-small p-6 btn-copy hidden-default">📋 Copy License Key</button>
+        </article>
+
+      </div>
+
+      <div class="dash-actions dash-footer-actions">
+        <a id="downloadPanelBtn" class="btn btn-Download glow-success hidden-default" href="#" target="_blank" rel="noopener noreferrer">📥 Download Panel</a>
+        <a class="btn btn-primary" href="change.html" id="changePasswordBtn">🔑 Change Password</a>
+      </div>
+    </section>
+  </main>
+
+  <script src="../js/main.js" defer></script>
+</body>
+</html>

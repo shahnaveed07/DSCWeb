@@ -1,0 +1,114 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Checkout | Dark Skull Corporation</title>
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="icon" href="../images/dsclogo.png">
+  <style id="page-guard-style">body { display: none; }</style>
+</head>
+<body>
+  <header class="site-header">
+    <a class="logo-mark" href="../index.html">
+      <img src="../images/dsclogo.png" alt="DSC" class="header-logo-img">
+      <span class="logo-text">Dark Skull Corporation</span>
+    </a>
+    <div class="header-actions">
+      <button type="button" id="theme-toggle-btn" class="btn btn-neutral theme-toggle" data-theme-toggle>Light Mode</button>
+      <a class="btn btn-outline" href="../index.html">Back to Store</a>
+    </div>
+  </header>
+
+  <main class="page-shell">
+    <section class="panel">
+      <div class="panel-header">
+        <h1 class="auth-title">Complete Your Purchase</h1>
+      </div>
+      <p class="muted">Secure your panel and submit payment details for approval.</p>
+
+      <div class="checkout-container">
+
+        <div class="stat-card flex-1-min-280 border-primary">
+          <p class="stat-label">Selected Panel</p>
+          <h2 class="auth-title text-xl mb-5 text-secondary" id="displayPanelName">
+            <span class="skeleton-anim sk-dash-status d-block"></span>
+          </h2>
+          
+          <p class="stat-label mt-15">Duration</p>
+          <div class="input-group mb-0">
+            <select id="selectDays" class="w-full">
+              <option value="3">3 Days - Starter</option>
+              <option value="7">7 Days - Weekly</option>
+              <option value="15">15 Days - Standard</option>
+              <option value="30" selected>30 Days - Monthly</option>
+              <option value="60">60 Days - Bi-Monthly</option>
+              <option value="365">365 Days - Yearly</option>
+            </select>
+          </div>
+
+          <p class="stat-label mt-15">Total Amount Payable</p>
+          <h3 class="font-orbitron tracking-wide text-white mb-0" id="displayPrice">
+            <span class="skeleton-anim sk-dash-status d-block"></span>
+          </h3>
+        </div>
+
+        <div class="stat-card flex-1-min-280">
+          <h3 class="auth-title text-md mb-15">Order Details</h3>
+          
+          <form id="checkoutForm" class="stack" autocomplete="off">
+            <div class="input-group mb-10">
+              <label for="regUsername">Username <span class="text-danger">*</span></label>
+              <input type="text" id="regUsername" placeholder="Must match game username" required>
+            </div>
+            
+            <div class="input-group mb-10">
+              <label for="regPassword">Password <span class="text-danger">*</span></label>
+              <input type="password" id="regPassword" placeholder="Create a secure password" required minlength="3">
+            </div>
+
+            <div class="input-group mb-10">
+              <label for="regDiscord">Discord ID (Optional)</label>
+              <input type="text" id="regDiscord" placeholder="e.g. username#1234">
+            </div>
+
+            <div class="instruction-box border-warning mt-15">
+              <h4 class="text-warning mb-10">Payment Instructions</h4>
+              <p class="muted text-small mb-15">Scan the QR code below or click the UPI button to pay exactly the amount shown.</p>
+              
+              <div class="payment-qr-container">
+                <div id="qrcode" class="qr-placeholder">
+                  <img id="qrImage" src="" alt="Scan to Pay" class="hidden-default w-full">
+                  <span id="qrLoading">Generating QR...</span>
+                </div>
+              </div>
+
+              <a id="upiPayBtn" href="#" class="pay-now-btn">
+                📱 Pay with UPI App
+              </a>
+
+              <p class="text-small mt-10 muted">UPI ID: <span class="text-warning">NAVEEDMUSHTAQ@PTYES</span></p>
+            </div>
+
+            <div id="paymentProofGroup" class="input-group mt-10">
+              <label for="paymentProofImg">Upload Payment Proof (Screenshot)</label>
+              <input type="file" id="paymentProofImg" accept=".png,.jpg,.jpeg,image/png,image/jpeg" class="custom-file-input">
+              <small class="muted text-small">Max size: 5MB. Upload screenshot if you paid via UPI or Gateway.</small>
+              
+              <div id="imagePreviewBox" class="image-preview-container d-none">
+                  <img id="imagePreview" src="" alt="Payment Proof Preview">
+              </div>
+            </div>
+
+            <button type="submit" class="btn btn-primary btn-large mt-10">Submit Order for Approval</button>
+          </form>
+        </div>
+
+      </div>
+    </section>
+  </main>
+  
+  <script src="../js/main.js" defer></script>
+</body>
+</html>
+

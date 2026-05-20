@@ -1,0 +1,343 @@
+﻿<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin Dashboard | Dark Skull Corporation</title>
+    <meta name="robots" content="noindex, nofollow" />
+    <link rel="stylesheet" href="../css/style.css" />
+    <link rel="icon" href="../images/dsclogo.png" />
+    <style id="page-guard-style">
+      body {
+        display: none;
+      }
+    </style>
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="logo-mark" href="../index.html">
+        <img src="../images/dsclogo.png" alt="DSC" class="header-logo-img" />
+        <span class="logo-text">Dark Skull Corporation</span>
+      </a>
+      <div class="header-actions">
+        <button
+          type="button"
+          id="theme-toggle-btn"
+          class="btn btn-neutral theme-toggle"
+          data-theme-toggle
+        >
+          Light Mode
+        </button>
+        <button type="button" id="openAdminPassBtn" class="btn btn-neutral">
+          Change Password
+        </button>
+        <button type="button" class="btn btn-outline js-logout">Logout</button>
+      </div>
+    </header>
+
+    
+
+      <!-- User management block -->
+      <section class="panel">
+        <div class="panel-header">
+          <h1 class="auth-title">Admin Dashboard</h1>
+          <div class="header-actions">
+            <a class="btn btn-primary" href="add.html">Generate Key</a>
+            <a id="OwnerDBBtn" class="btn btn-danger d-none" href="OwnerDB.html"
+              >DB Manager</a
+            >
+            <button
+              type="button"
+              id="openCreateAdminBtn"
+              class="btn btn-danger d-none"
+            >
+              Create Admin
+            </button>
+            <button type="button" id="refreshUsersBtn" class="btn btn-outline">
+              Refresh
+            </button>
+          </div>
+        </div>
+        <p class="muted">Manage users, plans, expiries, and ban status.</p>
+
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Username</th>
+                <th>Plan</th>
+                <th>Expiry</th>
+                <th>Status</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="OwnerDBBody">
+              <tr>
+                <td colspan="6">Loading users...</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+      <main class="page-shell">
+      <!-- Pending orders block -->
+      <section class="panel panel-primary mb-25 " id="ordersSection">
+        <div class="panel-header">
+          <h2 class="auth-title text-secondary">Pending Store Orders</h2>
+          <div class="header-actions">
+            
+          </div>
+        </div>
+
+        <p class="muted">
+          Approve payments to automatically generate and assign license keys.
+        </p>
+
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Username</th>
+                <th>Discord</th>
+                <th>Plan / Days</th>
+                <th>Amount</th>
+                <th>Txn / UTR</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="OrdersTableBody">
+              <tr>
+                <td colspan="7">Loading orders...</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+    </main>
+
+    <!-- User edit modal block -->
+    <div
+      id="editModal"
+      class="modal-overlay"
+      role="dialog"
+      aria-modal="true"
+      aria-hidden="true"
+    >
+      <div class="modal-card">
+        <div class="modal-top">
+          <h2 class="modal-title">Edit User</h2>
+          <button
+            type="button"
+            id="closeEditModal"
+            class="icon-btn"
+            aria-label="Close edit user dialog"
+          >
+            &times;
+          </button>
+        </div>
+        <form id="adminEditForm" class="stack" autocomplete="off">
+          <input id="editUserId" type="hidden" />
+          <div class="input-group">
+            <label for="editPlan">Plan</label>
+            <input id="editPlan" type="text" required />
+          </div>
+          <div class="input-group">
+            <label for="editExpiry">Expiry</label>
+            <input id="editExpiry" type="datetime-local" />
+          </div>
+          <div class="input-group">
+            <label for="editBanStatus">Ban Status</label>
+            <select id="editBanStatus">
+              <option value="false">Active</option>
+              <option value="true">Banned</option>
+            </select>
+          </div>
+          <button type="submit" class="btn btn-primary">Save Changes</button>
+        </form>
+      </div>
+    </div>
+
+    <!-- Create admin modal block -->
+    <div
+      id="createAdminModal"
+      class="modal-overlay"
+      role="dialog"
+      aria-modal="true"
+      aria-hidden="true"
+    >
+      <div class="modal-card">
+        <div class="modal-top">
+          <h2 class="modal-title">Create New Admin</h2>
+          <button
+            type="button"
+            id="closeCreateAdminModal"
+            class="icon-btn"
+            aria-label="Close create admin dialog"
+          >
+            &times;
+          </button>
+        </div>
+        <form id="createAdminForm" class="stack" autocomplete="off">
+          <div class="input-group">
+            <label for="newAdminUsername">Username</label
+            ><input
+              id="newAdminUsername"
+              name="newAdminUsername"
+              type="text"
+              autocomplete="username"
+              required
+            />
+          </div>
+          <div class="input-group">
+            <label for="newAdminPassword">Password</label
+            ><input
+              id="newAdminPassword"
+              name="newAdminPassword"
+              type="password"
+              autocomplete="new-password"
+              minlength="6"
+              required
+            />
+          </div>
+          <button type="submit" class="btn btn-danger">Create Admin</button>
+        </form>
+      </div>
+    </div>
+
+    <!-- Admin password modal block -->
+    <div
+      id="adminPassModal"
+      class="modal-overlay"
+      role="dialog"
+      aria-modal="true"
+      aria-hidden="true"
+    >
+      <div class="modal-card">
+        <div class="modal-top">
+          <h2 class="modal-title">Change Password</h2>
+          <button
+            type="button"
+            id="closeAdminPassModal"
+            class="icon-btn"
+            aria-label="Close admin password dialog"
+          >
+            &times;
+          </button>
+        </div>
+        <form id="adminChangePassForm" class="stack" autocomplete="off">
+          <div class="input-group">
+            <label for="adminOldPass">Current Password</label
+            ><input
+              id="adminOldPass"
+              name="adminOldPass"
+              type="password"
+              autocomplete="current-password"
+              required
+            />
+          </div>
+          <div class="input-group">
+            <label for="adminNewPass">New Password</label
+            ><input
+              id="adminNewPass"
+              name="adminNewPass"
+              type="password"
+              autocomplete="new-password"
+              minlength="6"
+              required
+            />
+          </div>
+          <button type="submit" class="btn btn-primary">Update Password</button>
+        </form>
+      </div>
+    </div>
+
+    <!-- Shared delete confirmation modal block -->
+    <div
+      id="deleteConfirmModal"
+      class="modal-overlay"
+      role="dialog"
+      aria-modal="true"
+      aria-hidden="true"
+    >
+      <div class="modal-card modal-card-center modal-card-danger">
+        <div class="modal-top modal-top-center">
+          <div class="modal-icon-box modal-icon-danger">
+            <svg
+              width="24"
+              height="24"
+              fill="none"
+              stroke="#ef4444"
+              stroke-width="2"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"
+              ></path>
+            </svg>
+          </div>
+        </div>
+        <h2 class="modal-title modal-title-large title-danger">
+          Are you sure?
+        </h2>
+        <p class="muted modal-desc">
+          Do you really want to permanently delete
+          <strong id="deleteTargetUsername" class="highlight-text"></strong>?
+          This action cannot be undone.
+        </p>
+
+        <div class="modal-btn-group">
+          <button type="button" id="cancelDeleteBtn" class="btn btn-neutral">
+            Cancel
+          </button>
+          <button type="button" id="confirmDeleteBtn" class="btn btn-danger">
+            Yes, Delete!
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Order confirmation modal block -->
+    <div
+      id="orderConfirmModal"
+      class="modal-overlay"
+      role="dialog"
+      aria-modal="true"
+      aria-hidden="true"
+    >
+      <div
+        class="modal-card modal-card-center transition-all"
+        id="orderModalCard"
+      >
+        <div class="modal-top modal-top-center">
+          <div id="orderModalIcon" class="modal-icon-box transition-all"></div>
+        </div>
+        <h2
+          class="modal-title modal-title-large transition-all"
+          id="orderModalTitle"
+        >
+          Are you sure?
+        </h2>
+        <p class="muted modal-desc">
+          Do you really want to
+          <strong id="orderModalActionText" class="highlight-text"></strong>
+          this order?
+        </p>
+
+        <div class="modal-btn-group">
+          <button type="button" id="cancelOrderBtn" class="btn btn-neutral">
+            Cancel
+          </button>
+          <button type="button" id="confirmOrderBtn" class="btn">
+            Yes, Confirm!
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <script src="../js/main.js" defer></script>
+  </body>
+</html>

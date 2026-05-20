@@ -1,0 +1,52 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Change Password | Dark Skull Corporation</title>
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="icon" href="../images/dsclogo.png">
+  <style id="page-guard-style">body { display: none; }</style>
+</head>
+<body>
+  <header class="site-header">
+    <a class="logo-mark" href="../index.html">
+      <img src="../images/dsclogo.png" alt="DSC" class="header-logo-img">
+      <span class="logo-text">Dark Skull Corporation</span>
+    </a>
+    <div class="header-actions">
+      <button type="button" id="theme-toggle-btn" class="btn btn-neutral theme-toggle" data-theme-toggle>Light Mode</button>
+      <button type="button" class="btn btn-outline js-logout">Logout</button>
+    </div>
+  </header>
+
+  <main class="center-wrap">
+    <section class="auth-card">
+      <h1 class="auth-title">Change Password</h1>
+      <p class="auth-subtitle">Secure your account with a new password.</p>
+
+      <form id="changePasswordForm" class="stack" autocomplete="off">
+        <div class="input-group">
+          <label for="currentPassword">Current Password</label>
+          <input id="currentPassword" name="currentPassword" type="password" placeholder="Current password" autocomplete="current-password" required>
+        </div>
+
+        <div class="input-group">
+          <label for="newPassword">New Password</label>
+          <input id="newPassword" name="newPassword" type="password" placeholder="New password" autocomplete="new-password" minlength="3" required>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Update Password</button>
+      </form>
+
+      <div class="link-row">
+        <a href="Udash.html">Back to Dashboard</a>
+      </div>
+    </section>
+  </main>
+
+  <script src="../js/main.js" defer></script>
+</body>
+</html>
+
