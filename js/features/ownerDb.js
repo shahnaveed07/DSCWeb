@@ -21,7 +21,8 @@ const DB_ENDPOINTS = {
   orders: "/api/admin/orders/all",
   settings: "/api/admin/settings/all",
   freeSettings: "/api/admin/settings/all", // ?? Naya option yahan add hua
-  freeusers: "/api/admin/free-users"
+  freeusers: "/api/admin/free-users",
+  panelUpdates: "/api/admin/panel-updates" // ?? Naya option yahan add hua
 };
 const USER_COLUMN_ORDER = ["id", "Id", "username", "Username", "plan", "Plan", "keyValue", "KeyValue", "hwid", "HWID", "isBanned", "IsBanned", "failedLoginAttempts", "FailedLoginAttempts", "lockoutEnd", "LockoutEnd", "expiryTime", "ExpiryTime", "registrationTime", "RegistrationTime", "lastLoginTime", "LastLoginTime"];
 const FREE_USER_COLUMN_ORDER = ["id", "Id", "username", "Username", "hwid", "HWID", "CaptchaToken", "CaptchaToken", "isBanned", "IsBanned", "failedLoginAttempts", "FailedLoginAttempts", "lockoutEnd", "LockoutEnd", "firstLoginTime", "FirstLoginTime", "lastLoginTime", "LastLoginTime"];
@@ -44,7 +45,7 @@ export function updateMaintenanceButtonUI(isOn) {
   button.textContent = isOn ? "Maintenance: ON" : "Maintenance: OFF";
 }
 
-export function buildSettingsPayload(overrides = {}
+export function buildSettingsPayload(overrides) {}
 
 export function populateSystemControlsForm(settings) {
   cachedSettingsRecord = settings || {};
@@ -547,6 +548,13 @@ export function openOwnerEditModal(rowData) {
     <div class="input-group"><label>Aimbot Panel Link</label><input id="dbSettingsAimbotLink" type="url" value="${rowData.aimbotLink || rowData.AimbotLink || ''}"></div>
     <div class="input-group"><label>Premium Panel Link</label><input id="dbSettingsPremiumLink" type="url" value="${rowData.premiumLink || rowData.PremiumLink || ''}"></div>
     <div class="input-group"><label>Customised Panel Link</label><input id="dbSettingsCustomLink" type="url" value="${rowData.customisedLink || rowData.CustomisedLink || ''}"></div>
+    `;} else if (currentDbTable === "panelUpdates") {
+    html = `
+      <h4 class="mb-10 text-secondary">Update Panel Status</h4>
+      <div class="input-group"><label>Aimbot Status</label><input id="dbUpd1" type="text" value="${Core.escapeHTML(rowData.update1 || rowData.Update1 || '')}"></div>
+      <div class="input-group"><label>Sniper Status</label><input id="dbUpd2" type="text" value="${Core.escapeHTML(rowData.update2 || rowData.Update2 || '')}"></div>
+      <div class="input-group"><label>Bypass Status</label><input id="dbUpd3" type="text" value="${Core.escapeHTML(rowData.update3 || rowData.Update3 || '')}"></div>
+      <div class="input-group"><label>General Status</label><input id="dbUpd4" type="text" value="${Core.escapeHTML(rowData.update4 || rowData.Update4 || '')}"></div>
     `;
   } else if (currentDbTable === "freeSettings") {
     html = `
@@ -649,6 +657,14 @@ export async function handleOwnerDBSave() {
     }
 
     payload = buildSettingsPayload(overrides);
+    } else if (currentDbTable === "panelUpdates") {
+    endpoint = "/api/admin/panel-updates/save";
+    payload = {
+      update1: document.getElementById("dbUpd1")?.value || "",
+      update2: document.getElementById("dbUpd2")?.value || "",
+      update3: document.getElementById("dbUpd3")?.value || "",
+      update4: document.getElementById("dbUpd4")?.value || ""
+    };
 
   } else if (currentDbTable === "freeSettings") {
     endpoint = "/api/admin/settings/update";
