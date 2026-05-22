@@ -730,19 +730,9 @@
     <div class="footer-content">
       <p class="footer-copyright">&copy; ${new Date().getFullYear()} DARK SKULL CORPORATION</p>
       <p class="footer-credit">Developer 
-        <a href="https://naveedmushtaq.netlify.app/" target="_blank" rel="noopener noreferrer" class="footer-name tooltip-trigger" data-tooltip="Visit Navi's Portfolio">
+        <a href="https://naveedmushtaq.netlify.app/" target="_blank" rel="noopener noreferrer" class="footer-name tooltip-trigger" data-tooltip="Visit">
           Naveed Mushtaq
         </a>
-Co-Developer 
-<a 
-  href="https://www.instagram.com/zorixfy/" 
-  target="_blank" 
-  rel="noopener noreferrer" 
-  class="footer-name tooltip-trigger" 
-  data-tooltip="Visit Shahid's Instagram"
->
-  Shahid Mushtaq
-</a>
       </p>
     </div>
   `;
