@@ -22,7 +22,7 @@
     "Alogin.html",
     "Adash.html",
     "OwnerDB.html",
-    "add.html",
+    "generateKey",
   ]);
   const PUBLIC_PAGES = new Set([
     "index.html",
@@ -122,7 +122,7 @@
     if (filename.includes("udash")) return "Udash.html";
     if (filename.includes("adash")) return "Adash.html";
     if (filename.includes("ownerdb")) return "OwnerDB.html";
-    if (filename.includes("add")) return "add.html";
+    if (filename.includes("add")) return "generateKey";
     if (filename.includes("checkout")) return "checkout.html";
     if (filename.includes("freepanel")) return "freepanel.html";
     if (filename.includes("change")) return "change.html";
@@ -1003,7 +1003,7 @@ Co-Developer
         "alogin.html",
         "adash.html",
         "ownerdb.html",
-        "add.html",
+        "generateKey",
       ].includes(page);
       if (isAdminPage) return false;
 
@@ -1354,7 +1354,9 @@ Co-Developer
     const statusCard = document.getElementById("status-card");
     const keyCard = document.getElementById("key-card");
     const downloadBtn = document.getElementById("downloadPanelBtn");
-
+   
+    
+      
     if (nameEl)
       nameEl.textContent = String(currentUser.username || "user").toUpperCase();
     if (planEl)
@@ -1455,8 +1457,13 @@ Co-Developer
       const expiryIcon = document.getElementById("expiryIcon");
       const statusIcon = document.getElementById("statusIcon");
 
-      // Check Expiry (Agar N/A Temp hai ya date nikal gayi hai)
-      const isTempOrExpired = !liveExpiry || new Date(liveExpiry) < new Date();
+      // 🔥 BUG FIX: Unused/Pending keys ko expired show hone se roko
+      let isTempOrExpired = false;
+      if (liveStatus.toLowerCase() === "pending" || normalizedKeyStatus === "UNUSED" || livePlan.toLowerCase() === "temp") {
+        isTempOrExpired = false;
+      } else {
+        isTempOrExpired = !liveExpiry || new Date(liveExpiry).getFullYear() < 2000 || new Date(liveExpiry) < new Date();
+      }
 
       if (persistedUser && planEl) planEl.textContent = livePlan.toUpperCase();
 
@@ -1520,11 +1527,13 @@ Co-Developer
         keyStatusEl.className = "badge d-none";
       }
 
-      if (copyBtn && hasIssuedKey) {
+     if (copyBtn && hasIssuedKey) {
+        copyBtn.classList.remove("d-none", "hidden-default"); // 🔥 CSS se bhi hide hatana zaroori hai
         copyBtn.style.display = "block";
         copyBtn.onclick = () =>
           copyTextToClipboard(orderKey, copyBtn, "Copy Key");
       } else if (copyBtn) {
+        copyBtn.classList.add("d-none"); // 🔥 CSS se proper hide karo
         copyBtn.style.display = "none";
         copyBtn.onclick = null;
       }
@@ -4017,7 +4026,7 @@ Co-Developer
     return (async () => {
       const pageName = getCurrentPageName();
       if (
-        !["Alogin.html", "Adash.html", "OwnerDB.html", "add.html"].includes(
+        !["Alogin.html", "Adash.html", "OwnerDB.html", "generateKey"].includes(
           pageName,
         )
       )
@@ -4040,7 +4049,7 @@ Co-Developer
         await loadAdminDash();
         return;
       }
-      if (pageName === "add.html") {
+      if (pageName === "generateKey") {
         bindGenerateKeyControls();
         return;
       }
