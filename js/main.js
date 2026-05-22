@@ -2703,6 +2703,7 @@ Co-Developer
         generatedKeyValue.classList.add("text-success");
       }
       if (copyKeyBtn) {
+        copyKeyBtn.classList.remove("d-none", "hidden-default");
         copyKeyBtn.style.display = "block";
         copyKeyBtn.onclick = () =>
           copyTextToClipboard(
@@ -3577,7 +3578,28 @@ Co-Developer
     <div class="input-group"><label>Premium Panel Link</label><input id="dbSettingsPremiumLink" type="url" value="${rowData.premiumLink || rowData.PremiumLink || ""}"></div>
     <div class="input-group"><label>Customised Panel Link</label><input id="dbSettingsCustomLink" type="url" value="${rowData.customisedLink || rowData.CustomisedLink || ""}"></div>
     `;
-    } else if (currentDbTable === "freeSettings") {
+    } // Isko openOwnerEditModal function ke andar add karna hai
+      else if (currentDbTable === "panelUpdates") {
+        html = `
+          <h4 class="mb-10 text-secondary">Update Panel Status</h4>
+          <div class="input-group">
+            <label>Aimbot Status</label>
+            <input id="dbUpd1" type="text" value="${escapeHTML(rowData.update1 || rowData.Update1 || '')}">
+          </div>
+          <div class="input-group">
+            <label>Sniper Status</label>
+            <input id="dbUpd2" type="text" value="${escapeHTML(rowData.update2 || rowData.Update2 || '')}">
+          </div>
+          <div class="input-group">
+            <label>Bypass Status</label>
+            <input id="dbUpd3" type="text" value="${escapeHTML(rowData.update3 || rowData.Update3 || '')}">
+          </div>
+          <div class="input-group">
+            <label>General Status</label>
+            <input id="dbUpd4" type="text" value="${escapeHTML(rowData.update4 || rowData.Update4 || '')}">
+          </div>
+        `;
+      }else if (currentDbTable === "freeSettings") {
       html = `
     <h4 class="mb-10 text-success" style="border-bottom: 1px solid var(--surface-border); padding-bottom: 5px;">Free Panel Configurations</h4>
     <div class="input-group">
