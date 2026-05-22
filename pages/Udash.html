@@ -5,18 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>User Dashboard | Dark Skull Corporation</title>
   <meta name="robots" content="noindex, nofollow">
-  <script>
-    (function () {
-      try {
-        var theme = localStorage.getItem("siteTheme");
-        if (theme !== "light" && theme !== "dark") {
-          theme = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
-        }
-        document.documentElement.setAttribute("data-theme", theme);
-        document.documentElement.style.colorScheme = theme;
-      } catch (e) {}
-    })();
-  </script>
+ 
   <link rel="stylesheet" href="../css/style.css">
   <link rel="icon" href="../images/dsclogo.png">
   <style id="page-guard-style">body { display: none; }</style>
