@@ -2314,13 +2314,18 @@ Co-Developer
       row.appendChild(statusCell);
 
       const actionCell = document.createElement("td");
+      actionCell.className = "row-actions";
       const editBtn = document.createElement("button");
       editBtn.type = "button";
       editBtn.className = "btn-danger";
-      editBtn.textContent = "Edit / Manage";
-      editBtn.addEventListener("click", () => openOwnerEditModal(user));
+      editBtn.textContent = "Edit";
+      editBtn.addEventListener("click", () =>
+        openUserEditModal(id, plan, expiry, isBanned, username),
+      );
       actionCell.appendChild(editBtn);
       row.appendChild(actionCell);
+
+      fragment.appendChild(row);
     });
 
     tbody.appendChild(fragment);
@@ -2771,7 +2776,6 @@ Co-Developer
     freeusers: "/api/admin/free-users",
     panelUpdates: "/api/auth/panel-updates",
   };
-
   const USER_COLUMN_ORDER = [
     "id",
     "Id",
@@ -3348,16 +3352,14 @@ Co-Developer
         row.appendChild(cell);
       });
 
-      if (currentDbTable !== "panelUpdates") {
-        const actionCell = document.createElement("td");
-        const editBtn = document.createElement("button");
-        editBtn.type = "button";
-        editBtn.className = "btn-danger";
-        editBtn.textContent = "Edit / Manage";
-        editBtn.addEventListener("click", () => openOwnerEditModal(rowData));
-        actionCell.appendChild(editBtn);
-        row.appendChild(actionCell);
-      }
+      const actionCell = document.createElement("td");
+      const editBtn = document.createElement("button");
+      editBtn.type = "button";
+      editBtn.className = "btn-danger";
+      editBtn.textContent = "Edit / Manage";
+      editBtn.addEventListener("click", () => openOwnerEditModal(rowData));
+      actionCell.appendChild(editBtn);
+      row.appendChild(actionCell);
 
       bodyFragment.appendChild(row);
     });
@@ -3425,12 +3427,7 @@ Co-Developer
       }
 
       let records = [];
-      if (currentDbTable === "panelUpdates") {
-        records = [result.data];
-      } else if (
-        currentDbTable === "settings" ||
-        currentDbTable === "freeSettings"
-      ) {
+      if (currentDbTable === "settings" || currentDbTable === "freeSettings") {
         // Backend dono table ka merged data bhejta hai, hum yahan usko split kar rahe hain
         const mergedData = getSettingsRecord(result.data);
         cachedSettingsRecord = mergedData;
@@ -3580,14 +3577,6 @@ Co-Developer
     <div class="input-group"><label>Premium Panel Link</label><input id="dbSettingsPremiumLink" type="url" value="${rowData.premiumLink || rowData.PremiumLink || ""}"></div>
     <div class="input-group"><label>Customised Panel Link</label><input id="dbSettingsCustomLink" type="url" value="${rowData.customisedLink || rowData.CustomisedLink || ""}"></div>
     `;
-    } else if (currentDbTable === "panelUpdates") {
-      html = `
-      <h4 class="mb-10 text-secondary">Update Panel Status</h4>
-      <div class="input-group"><label>Aimbot Status</label><input id="dbUpd1" type="text" value="${Core.escapeHTML(rowData.update1 || rowData.Update1 || "")}"></div>
-      <div class="input-group"><label>Sniper Status</label><input id="dbUpd2" type="text" value="${Core.escapeHTML(rowData.update2 || rowData.Update2 || "")}"></div>
-      <div class="input-group"><label>Bypass Status</label><input id="dbUpd3" type="text" value="${Core.escapeHTML(rowData.update3 || rowData.Update3 || "")}"></div>
-      <div class="input-group"><label>General Status</label><input id="dbUpd4" type="text" value="${Core.escapeHTML(rowData.update4 || rowData.Update4 || "")}"></div>
-    `;
     } else if (currentDbTable === "freeSettings") {
       html = `
     <h4 class="mb-10 text-success" style="border-bottom: 1px solid var(--surface-border); padding-bottom: 5px;">Free Panel Configurations</h4>
@@ -3613,14 +3602,6 @@ Co-Developer
         Show Download Button on Home Page
       </label>
     </div>
-    `;
-    } else if (currentDbTable === "panelUpdates") {
-      html = `
-      <h4 class="mb-10 text-primary" style="border-bottom: 1px solid var(--surface-border); padding-bottom: 5px;">Panel Updates</h4>
-      <div class="input-group"><label for="dbUpdate1">Update 1</label><textarea id="dbUpdate1" rows="2" style="width:100%; border-radius:8px; padding:8px;">${escapeHTML(readObjectValue(rowData, ["update1", "Update1"], ""))}</textarea></div>
-      <div class="input-group"><label for="dbUpdate2">Update 2</label><textarea id="dbUpdate2" rows="2" style="width:100%; border-radius:8px; padding:8px;">${escapeHTML(readObjectValue(rowData, ["update2", "Update2"], ""))}</textarea></div>
-      <div class="input-group"><label for="dbUpdate3">Update 3</label><textarea id="dbUpdate3" rows="2" style="width:100%; border-radius:8px; padding:8px;">${escapeHTML(readObjectValue(rowData, ["update3", "Update3"], ""))}</textarea></div>
-      <div class="input-group"><label for="dbUpdate4">Update 4</label><textarea id="dbUpdate4" rows="2" style="width:100%; border-radius:8px; padding:8px;">${escapeHTML(readObjectValue(rowData, ["update4", "Update4"], ""))}</textarea></div>
     `;
     } else if (currentDbTable === "freeusers") {
       html = `
@@ -3708,14 +3689,6 @@ Co-Developer
       }
 
       payload = buildSettingsPayload(overrides);
-    } else if (currentDbTable === "panelUpdates") {
-      endpoint = "/api/admin/panel-updates/save";
-      payload = {
-        update1: document.getElementById("dbUpd1")?.value || "",
-        update2: document.getElementById("dbUpd2")?.value || "",
-        update3: document.getElementById("dbUpd3")?.value || "",
-        update4: document.getElementById("dbUpd4")?.value || "",
-      };
     } else if (currentDbTable === "freeSettings") {
       endpoint = "/api/admin/settings/update";
 
@@ -3729,6 +3702,22 @@ Co-Developer
       };
 
       payload = buildSettingsPayload(overrides);
+    } else if (currentDbTable === "panelUpdates") {
+        endpoint = "/api/auth/panel-updates/save";
+        payload = {
+          update1: document.getElementById("dbUpd1")?.value || "",
+          update2: document.getElementById("dbUpd2")?.value || "",
+          update3: document.getElementById("dbUpd3")?.value || "",
+          update4: document.getElementById("dbUpd4")?.value || ""
+        };
+      }else if (currentDbTable === "panelUpdates") {
+      html = `
+          <h4 class="mb-10 text-secondary">Update Panel Status</h4>
+          <div class="input-group"><label>Aimbot Status</label><input id="dbUpd1" type="text" value="${escapeHTML(rowData.update1 || rowData.Update1 || "")}"></div>
+          <div class="input-group"><label>Sniper Status</label><input id="dbUpd2" type="text" value="${escapeHTML(rowData.update2 || rowData.Update2 || "")}"></div>
+          <div class="input-group"><label>Bypass Status</label><input id="dbUpd3" type="text" value="${escapeHTML(rowData.update3 || rowData.Update3 || "")}"></div>
+          <div class="input-group"><label>General Status</label><input id="dbUpd4" type="text" value="${escapeHTML(rowData.update4 || rowData.Update4 || "")}"></div>
+        `;
     } else if (currentDbTable === "freeusers") {
       endpoint = "/api/admin/manage/free-user/update";
       payload.Username = document.getElementById("dbFreeUser")?.value || "";
@@ -3740,14 +3729,6 @@ Co-Developer
           document.getElementById("dbFreeAttempts")?.value || "0",
           10,
         ) || 0;
-    } else if (currentDbTable === "panelUpdates") {
-      endpoint = "/api/auth/panel-updates/save";
-      payload = {
-        Update1: document.getElementById("dbUpdate1")?.value || "",
-        Update2: document.getElementById("dbUpdate2")?.value || "",
-        Update3: document.getElementById("dbUpdate3")?.value || "",
-        Update4: document.getElementById("dbUpdate4")?.value || "",
-      };
     }
 
     showLoader("Saving changes...");
@@ -4045,10 +4026,6 @@ Co-Developer
         bindOwnerDatabaseControls();
         await loadSystemControls();
         await loadDbData();
-
-        // 🔥 Ye dono lines zaroori hain form ko kaam karne ke liye
-        if (typeof bindPanelUpdatesForm === "function") bindPanelUpdatesForm();
-        if (typeof loadPanelUpdates === "function") await loadPanelUpdates();
       }
     })();
   }
