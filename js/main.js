@@ -4016,11 +4016,12 @@
     return (async () => {
       const pageName = getCurrentPageName();
       if (
-        !["Alogin.html", "Adash.html", "OwnerDB.html", "generateKey"].includes(
+        !["Alogin.html", "Adash.html", "OwnerDB.html", "generateKey.html"].includes(
           pageName,
         )
       )
         return;
+       
       bindSharedAdminModals();
       if (pageName === "Alogin.html") {
         const currentUser = getCurrentUser();
@@ -4039,7 +4040,7 @@
         await loadAdminDash();
         return;
       }
-      if (pageName === "generateKey") {
+      if (pageName === "generateKey.html") {
         bindGenerateKeyControls();
         return;
       }
