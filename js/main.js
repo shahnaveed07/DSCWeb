@@ -22,7 +22,7 @@
     "Alogin.html",
     "Adash.html",
     "OwnerDB.html",
-    "generateKey",
+    "generateKey.html",
   ]);
   const PUBLIC_PAGES = new Set([
     "index.html",
@@ -122,7 +122,7 @@
     if (filename.includes("udash")) return "Udash.html";
     if (filename.includes("adash")) return "Adash.html";
     if (filename.includes("ownerdb")) return "OwnerDB.html";
-    if (filename.includes("add")) return "generateKey";
+    if (filename.includes("generatekey")) return "generateKey.html";
     if (filename.includes("checkout")) return "checkout.html";
     if (filename.includes("freepanel")) return "freepanel.html";
     if (filename.includes("change")) return "change.html";
@@ -993,7 +993,7 @@
         "alogin.html",
         "adash.html",
         "ownerdb.html",
-        "generateKey",
+        "generatekey.html",
       ].includes(page);
       if (isAdminPage) return false;
 
