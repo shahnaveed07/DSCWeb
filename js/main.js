@@ -730,7 +730,7 @@
     <div class="footer-content">
       <p class="footer-copyright">&copy; ${new Date().getFullYear()} DARK SKULL CORPORATION</p>
       <p class="footer-credit">Developer 
-        <a href="https://naveedmushtaq.netlify.app/" target="_blank" rel="noopener noreferrer" class="footer-name tooltip-trigger" data-tooltip="Visit">
+        <a href="https://naveedmushtaq.tech/" target="_blank" rel="noopener noreferrer" class="footer-name tooltip-trigger" data-tooltip="Visit">
           Naveed Mushtaq
         </a>
       </p>
