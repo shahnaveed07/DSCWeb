@@ -54,7 +54,27 @@
   let observer = null;
   let currentPayload = null;
   let currentSource = "latest";
-  const API_BASE = "";
+  const LOCAL_NEWS_API_BASE = "http://localhost:8080";
+  const PRODUCTION_NEWS_API_BASE = "https://dscauth.onrender.com";
+
+  function resolveNewsApiBase() {
+    const hostname = String(window.location.hostname || "").toLowerCase();
+    const isLocal = hostname === "localhost" || hostname === "127.0.0.1";
+    const configuredBase =
+      (typeof window.__NEWS_API_BASE__ === "string" && window.__NEWS_API_BASE__.trim()) ||
+      (typeof window.__API_BASE__ === "string" && window.__API_BASE__.trim());
+    const candidate = configuredBase || (isLocal ? LOCAL_NEWS_API_BASE : PRODUCTION_NEWS_API_BASE);
+
+    try {
+      const parsed = new URL(candidate);
+      if (!isLocal && parsed.protocol !== "https:") return PRODUCTION_NEWS_API_BASE;
+      return parsed.origin.replace(/\/+$/, "");
+    } catch (err) {
+      return isLocal ? LOCAL_NEWS_API_BASE : PRODUCTION_NEWS_API_BASE;
+    }
+  }
+
+  const API_BASE = resolveNewsApiBase();
 
   function normalizeDate(dateString) {
     const value = String(dateString || "").trim();
@@ -127,10 +147,12 @@
       };
     }
 
-    const category = String(item.Category || item.category || "").trim();
+    const category = String(item.Category || item.category || item.CategoryName || item.categoryName || "").trim();
     const title = String(item.Title || item.title || "").trim();
-    const summary = String(item.Summary || item.summary || "").trim();
-    const date = String(item.PublishedAt || item.publishedAt || item.CreatedAt || item.createdAt || "").trim();
+    const summary = String(item.Summary || item.summary || item.Description || item.description || item.Content || item.content || "").trim();
+    const date = String(
+      item.PublishedAt || item.publishedAt || item.PublishedDate || item.publishedDate || item.CreatedAt || item.createdAt || item.Date || item.date || ""
+    ).trim();
 
     return {
       category,
@@ -172,12 +194,24 @@
       return payload.items;
     }
 
+    if (Array.isArray(payload?.Items)) {
+      return payload.Items;
+    }
+
     if (Array.isArray(payload?.data)) {
       return payload.data;
     }
 
+    if (Array.isArray(payload?.Data)) {
+      return payload.Data;
+    }
+
     if (Array.isArray(payload?.news)) {
       return payload.news;
+    }
+
+    if (Array.isArray(payload?.News)) {
+      return payload.News;
     }
 
     return [];
@@ -499,7 +533,7 @@
 
     currentPayload = payload;
 
-    updateSeo(payload, `${window.location.origin}/news/archive/${normalizedDate}.json`);
+    updateSeo(payload, `${window.location.href.split("?")[0]}?date=${encodeURIComponent(normalizedDate)}`);
     updatePageHeader(payload, "Archive");
     mountCategoryShells(payload.categories);
 
