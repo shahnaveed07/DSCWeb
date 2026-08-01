@@ -242,7 +242,6 @@ p { margin-top: 0; }
 .text-warning { color: var(--warning) !important; }
 .text-secondary { color: var(--secondary) !important; }
 .text-white { color: #fff !important; }
-.text-purple { color: #a855f7 !important; } /* Replaced inline purple */
 .title-danger { color: var(--danger); }
 .text-gold { color: var(--elite-text-gold) !important; }
 .text-gold-light { color: var(--elite-text-gold-light) !important; }
@@ -474,12 +473,7 @@ input:focus-visible, select:focus-visible { outline: none; border-color: var(--p
   padding: 5px 35px; transform: rotate(45deg); font-weight: 900; font-size: 0.7rem; letter-spacing: 1px;
 }
 
-.product-card.disabled-card { opacity: 0.6; filter: grayscale(80%); pointer-events: none; transition: opacity 0.3s ease, filter 0.3s ease, background-color 0.3s ease, border-color 0.3s ease; }
-.product-card.disabled-card .btn { background: rgba(148, 163, 184, 0.15); color: var(--muted); border-color: rgba(148, 163, 184, 0.2); cursor: not-allowed; }
-
 /* Dashboard Display specific panels */
-.panel-name-display { font-size: 1.3rem; margin: 0 0 20px; color: var(--panel-name); }
-.price-display { font-family: 'Orbitron', sans-serif; font-size: 2.5rem; color: var(--warning); }
 .section-title { margin: 34px 0 14px; font-family: "Orbitron", sans-serif; font-size: clamp(1.2rem, 2.2vw, 1.7rem); letter-spacing: 0.04em; text-transform: uppercase; }
 
 /* =========================================
@@ -736,6 +730,29 @@ tbody tr:hover { background: var(--surface-hover); }
 /* =========================================
    15. MEDIA QUERIES
    ========================================= */
+.page-intro { margin-bottom: 18px; max-width: 760px; }
+.page-intro h2 { margin: 12px 0 8px; font-family: "Orbitron", sans-serif; font-size: clamp(1.15rem, 2.2vw, 1.55rem); letter-spacing: 0.04em; text-transform: uppercase; }
+.page-intro p { color: var(--muted); font-size: 1rem; line-height: 1.7; }
+.nav-links { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 6px; }
+.nav-link { padding: 7px 10px; border-radius: 999px; color: var(--muted); transition: background-color 0.2s ease, color 0.2s ease, transform 0.2s ease; font-weight: 700; }
+.nav-link:hover, .nav-link.active { color: var(--text); background: rgba(59, 130, 246, 0.16); transform: translateY(-1px); }
+.page-stack { display: grid; gap: 24px; }
+.section-grid { display: grid; gap: 18px; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
+.feature-card, .service-card, .info-card, .contact-card, .cta-card { border: 1px solid var(--surface-border); border-radius: 18px; background: var(--surface); backdrop-filter: blur(var(--surface-blur)); box-shadow: var(--shadow); padding: clamp(18px, 3vw, 24px); }
+.feature-card h3, .service-card h3, .info-card h3, .contact-card h3 { margin: 0 0 8px; font-family: "Orbitron", sans-serif; font-size: 1rem; text-transform: uppercase; letter-spacing: 0.04em; }
+.feature-card p, .service-card p, .info-card p, .contact-card p { color: var(--muted); line-height: 1.7; }
+.feature-list { list-style: none; display: grid; gap: 8px; padding: 0; margin: 0; color: var(--muted); }
+.feature-list li { padding-left: 14px; position: relative; }
+.feature-list li::before { content: "•"; position: absolute; left: 0; color: var(--secondary); }
+.faq-list { display: grid; gap: 12px; margin-top: 12px; }
+.faq-item { border: 1px solid var(--surface-border); border-radius: 14px; background: rgba(15, 23, 42, 0.24); padding: 14px 16px; }
+.faq-item summary { cursor: pointer; font-weight: 700; color: var(--text); list-style: none; }
+.faq-item summary::-webkit-details-marker { display: none; }
+.faq-item p { margin-top: 10px; color: var(--muted); line-height: 1.7; }
+.cta-card { text-align: center; background: linear-gradient(135deg, rgba(59, 130, 246, 0.16), rgba(56, 189, 248, 0.12)); }
+.cta-card h2 { margin: 0 0 10px; font-family: "Orbitron", sans-serif; font-size: clamp(1.15rem, 2vw, 1.6rem); text-transform: uppercase; }
+.cta-card p { color: var(--muted); margin-bottom: 16px; }
+
 @media (max-width: 992px) { 
   .products-grid { grid-template-columns: repeat(2, 1fr); } 
 }
