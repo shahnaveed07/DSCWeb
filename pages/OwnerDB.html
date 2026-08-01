@@ -44,6 +44,7 @@
         >
           Light Mode
         </button>
+        <a class="btn btn-outline" href="#news-management">News</a>
         <a class="btn btn-outline" href="Adash.html">Back to Dashboard</a>
       </div>
     </header>
@@ -130,6 +131,49 @@
           </table>
         </div>
       </section>
+
+      <section class="panel panel-danger mt-25" id="news-management" aria-labelledby="news-management-title">
+        <div class="panel-header">
+          <div class="stack">
+            <h3 id="news-management-title" class="m-0">News Management</h3>
+            <p class="muted mb-0">Manage live news items exposed through the backend news API.</p>
+          </div>
+          <div class="header-actions">
+            <button type="button" id="newsAddBtn" class="btn btn-primary">+ Add News</button>
+            <button type="button" id="newsRefreshBtn" class="btn btn-neutral">Refresh</button>
+          </div>
+        </div>
+
+        <div class="flex-between-wrap my-15">
+          <input
+            type="text"
+            id="newsSearchInput"
+            placeholder="Search title, category, or author..."
+            class="db-search-input"
+          />
+
+          <div class="input-group w-250 mb-0">
+            <select id="newsCategoryFilter" class="db-search-input w-200 flex-unset">
+              <option value="">All Categories</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="table-wrap">
+          <table>
+            <thead id="newsTableHead">
+              <tr>
+                <th>Loading...</th>
+              </tr>
+            </thead>
+            <tbody id="newsTableBody">
+              <tr>
+                <td>Loading news...</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
     </main>
 
     <!-- Owner edit modal block -->
@@ -208,6 +252,65 @@
       </div>
     </div>
 
+    <div id="newsEditModal" class="modal-overlay" role="dialog" aria-modal="true" aria-hidden="true">
+      <div class="modal-card">
+        <div class="modal-top">
+          <h2 class="modal-title" id="newsEditTitle">Add News</h2>
+          <button type="button" id="closeNewsEdit" class="icon-btn" aria-label="Close news dialog">&times;</button>
+        </div>
+        <form id="newsEditForm" class="stack" autocomplete="off">
+          <input type="hidden" id="newsId" />
+          <div class="input-group">
+            <label for="newsCategory">Category</label>
+            <input id="newsCategory" list="newsCategoryOptions" type="text" placeholder="Technology" />
+            <datalist id="newsCategoryOptions"></datalist>
+          </div>
+          <div class="input-group">
+            <label for="newsTitle">Title</label>
+            <input id="newsTitle" type="text" placeholder="News headline" />
+          </div>
+          <div class="input-group">
+            <label for="newsSummary">Summary</label>
+            <textarea id="newsSummary" rows="4" placeholder="Original summary from the provider"></textarea>
+          </div>
+          <div class="input-group">
+            <label for="newsImageUrl">Image URL</label>
+            <input id="newsImageUrl" type="url" placeholder="https://..." />
+          </div>
+          <div class="input-group">
+            <label for="newsSourceName">Source Name</label>
+            <input id="newsSourceName" type="text" placeholder="Source publisher" />
+          </div>
+          <div class="input-group">
+            <label for="newsSourceUrl">Source URL</label>
+            <input id="newsSourceUrl" type="url" placeholder="https://source.example/article" />
+          </div>
+          <div class="input-group">
+            <label for="newsAuthor">Author</label>
+            <input id="newsAuthor" type="text" placeholder="Author name" />
+          </div>
+          <div class="input-group">
+            <label for="newsPublishedAt">Published Date</label>
+            <input id="newsPublishedAt" type="datetime-local" />
+          </div>
+          <div class="input-group">
+            <label for="newsLanguageCode">Language</label>
+            <input id="newsLanguageCode" type="text" placeholder="en" value="en" />
+          </div>
+          <div class="input-group">
+            <label for="newsTags">Tags</label>
+            <input id="newsTags" type="text" placeholder="tag1, tag2, tag3" />
+          </div>
+          <div class="flex-row-gap-15">
+            <label class="checkbox-label"><input id="newsIsFeatured" type="checkbox" class="scale-checkbox" /> Featured</label>
+            <label class="checkbox-label"><input id="newsIsActive" type="checkbox" class="scale-checkbox" checked /> Active</label>
+          </div>
+          <button type="submit" class="btn btn-primary" id="newsSaveBtn">Publish News</button>
+        </form>
+      </div>
+    </div>
+
     <script src="../js/main.js" defer></script>
+    <script src="../js/features/newsAdmin.js" defer></script>
   </body>
 </html>

@@ -4048,6 +4048,9 @@
         bindOwnerDatabaseControls();
         await loadSystemControls();
         await loadDbData();
+        if (typeof window.__NEWS_ADMIN_BOOTSTRAP__ === "function") {
+          window.__NEWS_ADMIN_BOOTSTRAP__();
+        }
       }
     })();
   }

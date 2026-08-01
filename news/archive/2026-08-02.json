@@ -1,0 +1,244 @@
+{
+  "version": "1.0.0",
+  "editionDate": "2026-08-02",
+  "updatedAt": "2026-08-02T06:30:00Z",
+  "meta": {
+    "title": "Daily World Updates Archive | 2026-08-02",
+    "description": "Archived daily world updates edition for 2026-08-02.",
+    "canonical": "https://dscweb.me/pages/news.html?date=2026-08-02",
+    "image": "https://dscweb.me/images/dsclogo.png"
+  },
+  "categories": [
+    {
+      "id": "top-headlines",
+      "name": "Top Headlines",
+      "items": [
+        {
+          "title": "International Health Agencies Launch Coordinated Early-Warning Network",
+          "summary": "The new network uses standardized reporting to detect emerging public health anomalies faster across participating countries.",
+          "date": "2026-08-02"
+        }
+      ]
+    },
+    {
+      "id": "india",
+      "name": "India",
+      "items": [
+        {
+          "title": "India Announces New Semiconductor Talent Fellowship Program",
+          "summary": "The initiative targets advanced manufacturing skills through university-industry collaboration and applied lab training.",
+          "date": "2026-08-02"
+        }
+      ]
+    },
+    {
+      "id": "world",
+      "name": "World",
+      "items": [
+        {
+          "title": "Energy Cooperation Talks Focus on Grid Resilience and Storage",
+          "summary": "Ministers outlined joint projects to modernize transmission reliability and improve large-scale battery integration.",
+          "date": "2026-08-02"
+        }
+      ]
+    },
+    {
+      "id": "technology",
+      "name": "Technology",
+      "items": [
+        {
+          "title": "Open Hardware Consortium Publishes New Edge Device Security Profile",
+          "summary": "The profile defines baseline secure boot and signed firmware requirements for next-generation edge deployments.",
+          "date": "2026-08-02"
+        }
+      ]
+    },
+    {
+      "id": "artificial-intelligence",
+      "name": "Artificial Intelligence",
+      "items": [
+        {
+          "title": "AI Safety Benchmark Suite Expanded for Multilingual Evaluation",
+          "summary": "Researchers introduced broader language coverage to improve fairness and robustness checks across global deployments.",
+          "date": "2026-08-02"
+        }
+      ]
+    },
+    {
+      "id": "android",
+      "name": "Android",
+      "items": [
+        {
+          "title": "Android Security Bulletin Addresses High-Severity Media Parsing Issue",
+          "summary": "Users are advised to install the latest patch level to mitigate potential remote exploitation vectors.",
+          "date": "2026-08-02"
+        }
+      ]
+    },
+    {
+      "id": "apple",
+      "name": "Apple",
+      "items": [
+        {
+          "title": "Apple Developer Notes Highlight Performance APIs for On-Device Models",
+          "summary": "Updated documentation details memory-aware execution guidance for model inference on mobile hardware.",
+          "date": "2026-08-02"
+        }
+      ]
+    },
+    {
+      "id": "gaming",
+      "name": "Gaming",
+      "items": [
+        {
+          "title": "Competitive Esports League Expands Anti-Cheat Integrity Program",
+          "summary": "Organizers introduced stronger client verification and match telemetry review for tournament fairness.",
+          "date": "2026-08-02"
+        }
+      ]
+    },
+    {
+      "id": "business",
+      "name": "Business",
+      "items": [
+        {
+          "title": "Supply Chain Visibility Platforms See Strong Enterprise Uptake",
+          "summary": "Large manufacturers are accelerating digital traceability adoption to reduce logistics disruption risk.",
+          "date": "2026-08-02"
+        }
+      ]
+    },
+    {
+      "id": "finance",
+      "name": "Finance",
+      "items": [
+        {
+          "title": "Digital Payments Volume Climbs in Cross-Border SME Transactions",
+          "summary": "Industry analysts cite lower settlement friction and improved compliance tooling as key growth drivers.",
+          "date": "2026-08-02"
+        }
+      ]
+    },
+    {
+      "id": "crypto",
+      "name": "Crypto",
+      "items": [
+        {
+          "title": "Stablecoin Reporting Rules Enter New Consultation Phase",
+          "summary": "Regulators are collecting feedback on reserve attestation cadence and transaction transparency requirements.",
+          "date": "2026-08-02"
+        }
+      ]
+    },
+    {
+      "id": "automobile",
+      "name": "Automobile",
+      "items": [
+        {
+          "title": "Autonomous Fleet Trial Shows Improved Urban Route Efficiency",
+          "summary": "Pilot metrics indicate reduced idle time through upgraded route prediction and traffic-aware dispatch.",
+          "date": "2026-08-02"
+        }
+      ]
+    },
+    {
+      "id": "science",
+      "name": "Science",
+      "items": [
+        {
+          "title": "Biotech Team Reports Progress in Rapid Diagnostic Sensor Miniaturization",
+          "summary": "New prototypes shorten detection windows while lowering manufacturing complexity for point-of-care usage.",
+          "date": "2026-08-02"
+        }
+      ]
+    },
+    {
+      "id": "space",
+      "name": "Space",
+      "items": [
+        {
+          "title": "Lunar Mission Support Tests Validate Updated Navigation Stack",
+          "summary": "Engineers confirmed higher positional accuracy in simulation scenarios relevant to orbital rendezvous planning.",
+          "date": "2026-08-02"
+        }
+      ]
+    },
+    {
+      "id": "cyber-security",
+      "name": "Cyber Security",
+      "items": [
+        {
+          "title": "Incident Response Teams Emphasize Faster Key Rotation Playbooks",
+          "summary": "Recent post-incident analyses show reduced breach impact when credential rotation automation is pre-configured.",
+          "date": "2026-08-02"
+        }
+      ]
+    },
+    {
+      "id": "sports",
+      "name": "Sports",
+      "items": [
+        {
+          "title": "Women’s Cricket Series Delivers Record Digital Audience Growth",
+          "summary": "Broadcasters observed strong engagement from younger viewers through interactive live-stream features.",
+          "date": "2026-08-02"
+        }
+      ]
+    },
+    {
+      "id": "entertainment",
+      "name": "Entertainment",
+      "items": [
+        {
+          "title": "Global Music Collaboration Week Drives Cross-Region Chart Momentum",
+          "summary": "Multi-artist releases gained rapid traction on streaming platforms in both established and emerging markets.",
+          "date": "2026-08-02"
+        }
+      ]
+    },
+    {
+      "id": "movies-ott",
+      "name": "Movies & OTT",
+      "items": [
+        {
+          "title": "OTT Analytics Suggest Rising Demand for Limited-Series Formats",
+          "summary": "Audience completion rates remain strongest for shorter episodic arcs with weekly release pacing.",
+          "date": "2026-08-02"
+        }
+      ]
+    },
+    {
+      "id": "weather",
+      "name": "Weather",
+      "items": [
+        {
+          "title": "Heat Advisory Issued for Several Inland Regions This Weekend",
+          "summary": "Forecast models indicate elevated daytime temperatures with guidance to limit prolonged outdoor activity.",
+          "date": "2026-08-02"
+        }
+      ]
+    },
+    {
+      "id": "todays-fact",
+      "name": "Today's Fact",
+      "items": [
+        {
+          "title": "Ocean Fact",
+          "summary": "More than 80 percent of Earth’s ocean remains unmapped in high detail, leaving major room for scientific discovery.",
+          "date": "2026-08-02"
+        }
+      ]
+    },
+    {
+      "id": "quote-of-the-day",
+      "name": "Quote of the Day",
+      "items": [
+        {
+          "title": "Daily Quote",
+          "summary": "Success is the sum of small efforts, repeated day in and day out.",
+          "date": "2026-08-02"
+        }
+      ]
+    }
+  ]
+}

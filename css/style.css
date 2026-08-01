@@ -753,6 +753,86 @@ tbody tr:hover { background: var(--surface-hover); }
 .cta-card h2 { margin: 0 0 10px; font-family: "Orbitron", sans-serif; font-size: clamp(1.15rem, 2vw, 1.6rem); text-transform: uppercase; }
 .cta-card p { color: var(--muted); margin-bottom: 16px; }
 
+/* News System */
+.news-category-container {
+  display: grid;
+  gap: 14px;
+}
+
+.news-category-block {
+  border: 1px solid var(--surface-border);
+  border-radius: 16px;
+  background: var(--surface);
+  padding: clamp(14px, 2.4vw, 18px);
+  box-shadow: var(--shadow-sm);
+  content-visibility: auto;
+  contain-intrinsic-size: 1px 340px;
+}
+
+.news-category-block .panel-header {
+  margin-bottom: 8px;
+}
+
+.news-item-card {
+  min-height: 150px;
+}
+
+.news-item-date {
+  margin-top: 10px;
+  font-weight: 700;
+  color: var(--secondary);
+  font-size: 0.95rem;
+}
+
+.news-skeleton {
+  height: 120px;
+  border-radius: 14px;
+  background: var(--skeleton-bg);
+  background-size: 200% 100%;
+  animation: shimmer 1.4s linear infinite;
+}
+
+.news-archive-form {
+  margin-bottom: 14px;
+}
+
+.news-archive-controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: flex-end;
+}
+
+.news-archive-label {
+  width: 100%;
+  font-weight: 700;
+}
+
+.news-archive-controls input[type="date"] {
+  width: min(230px, 100%);
+}
+
+.news-archive-list-wrap {
+  border-top: 1px solid var(--surface-border);
+  padding-top: 12px;
+}
+
+.news-archive-list-title {
+  margin-bottom: 10px;
+  color: var(--muted);
+  font-weight: 700;
+}
+
+.news-archive-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.news-archive-date-btn {
+  min-width: 128px;
+}
+
 @media (max-width: 992px) { 
   .products-grid { grid-template-columns: repeat(2, 1fr); } 
 }
@@ -763,6 +843,7 @@ tbody tr:hover { background: var(--surface-hover); }
   .theme-toggle { min-width: 110px; }
   .hero-actions, .dash-actions { flex-direction: column; }
   .hero-actions .btn, .dash-actions .btn { width: 100%; }
+  .news-archive-controls input[type="date"], .news-archive-controls .btn { width: 100%; }
 }
 @media (max-width: 600px) {
   .products-grid { grid-template-columns: 1fr; }
