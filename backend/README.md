@@ -8,7 +8,7 @@ This backend ingests live news from GNews, stores only original summaries in a l
 - SQLite `news` table with category + edition date indexing
 - Scheduled ingestion via cron (`NEWS_CRON`)
 - On-demand refresh endpoint (`POST /api/news/refresh`)
-- Frontend-compatible response shape for `js/news.js`
+- Standard JSON response shape for clients
 
 ## Setup
 

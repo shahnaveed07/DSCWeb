@@ -30,33 +30,77 @@
 
     <main class="page-shell page-stack">
       <section class="hero">
-        <span class="hero-eyebrow">Company Applications</span>
+        <span class="hero-eyebrow">Applications & Games</span>
         <h1>Practical software built for reliable daily use.</h1>
-        <p>From productivity utilities to future desktop experiences, our applications are designed with clarity and security in mind.</p>
+        <p>From productivity utilities and mobile applications to interactive game experiences, our software is engineered with clarity, speed, and privacy.</p>
       </section>
 
-      <section class="panel">
+      <section class="panel" aria-labelledby="available-apps">
+        <div class="page-intro">
+          <span class="section-eyebrow">Production Releases</span>
+          <h2 id="available-apps">Available Applications & Games</h2>
+          <p>Verified software releases available for desktop workflows and Android devices.</p>
+        </div>
         <div class="section-grid">
           <article class="feature-card">
+            <span class="card-badge">Utility App</span>
             <h3>Calculator</h3>
-            <p>Fast, compact productivity utility for everyday problem solving.</p>
-            <a class="btn btn-primary mt-15" href="downloads.html">Download</a>
+            <p>Fast, compact productivity utility designed for everyday problem solving and calculation workflows.</p>
+            <div class="card-actions">
+              <a class="btn btn-primary" href="downloads.html">Download Tool</a>
+            </div>
           </article>
           <article class="feature-card">
-            <h3>DSC Puzzle</h3>
-            <p>Game-inspired interaction design with a polished, modern interface.</p>
-            <a class="btn btn-primary mt-15" href="downloads.html">Learn More</a>
+            <span class="card-badge">Android Utility</span>
+            <h3>QR Scanner | Generator</h3>
+            <p>High-speed scanning and generation of QR codes. Available directly on the Google Play Store.</p>
+            <div class="card-actions">
+              <a class="btn btn-primary" href="https://play.google.com/store/apps/details?id=com.dsc.qrscanner" target="_blank" rel="noopener noreferrer">Install on Play Store</a>
+            </div>
           </article>
           <article class="feature-card">
+            <span class="card-badge">Interactive Game</span>
+            <h3>Mind Matrix (DSC Puzzle)</h3>
+            <p>Game-inspired interaction design with a polished, modern interface and brain-teaser puzzle challenges.</p>
+            <div class="card-actions">
+              <a class="btn btn-primary" href="https://play.google.com/store/apps/details?id=com.dsc.mindmatrix" target="_blank" rel="noopener noreferrer">Install on Play Store</a>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="panel" aria-labelledby="upcoming-apps">
+        <div class="page-intro">
+          <span class="section-eyebrow">Roadmap</span>
+          <h2 id="upcoming-apps">In Development & Future Tools</h2>
+          <p>Upcoming software tools currently being designed and engineered by Dark Skull Corporation.</p>
+        </div>
+        <div class="section-grid">
+          <article class="feature-card">
+            <span class="card-badge">AI Suite</span>
             <h3>Future AI Assistant</h3>
-            <p>Upcoming intelligent experiences tailored for workflow automation and assistance.</p>
-            <a class="btn btn-neutral mt-15" href="downloads.html">Coming Soon</a>
+            <p>Intelligent workflow experiences tailored for smart automation, productivity, and developer assistance.</p>
+            <div class="card-actions">
+              <button class="btn btn-neutral" disabled>Coming Soon</button>
+            </div>
           </article>
           <article class="feature-card">
+            <span class="card-badge">Desktop Suite</span>
             <h3>Future Desktop Tools</h3>
-            <p>Next-generation desktop utilities that combine speed, security, and usability.</p>
-            <a class="btn btn-neutral mt-15" href="downloads.html">Coming Soon</a>
+            <p>Next-generation desktop utilities that combine speed, system performance, and trusted usability.</p>
+            <div class="card-actions">
+              <button class="btn btn-neutral" disabled>Coming Soon</button>
+            </div>
           </article>
+        </div>
+      </section>
+
+      <section class="cta-card" aria-labelledby="apps-cta-title">
+        <h2 id="apps-cta-title">Looking for official builds and binaries?</h2>
+        <p>Visit the centralized download center to access verified releases and installation packages.</p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="downloads.html">Visit Download Center</a>
+          <a class="btn btn-outline" href="contact.html">Contact Engineering</a>
         </div>
       </section>
     </main>

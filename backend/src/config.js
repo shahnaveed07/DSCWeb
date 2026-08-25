@@ -16,7 +16,7 @@ export const config = {
   itemsPerCategory: Math.min(Math.max(toInt(process.env.NEWS_ITEMS_PER_CATEGORY, 1), 1), 5),
   cronSchedule: String(process.env.NEWS_CRON || "15 * * * *").trim(),
   newsBaseUrl: String(process.env.NEWS_BASE_URL || "https://gnews.io/api/v4").trim().replace(/\/+$/, ""),
-  canonicalNewsUrl: String(process.env.CANONICAL_NEWS_URL || "https://dscweb.me/pages/news.html").trim(),
+  canonicalNewsUrl: String(process.env.CANONICAL_NEWS_URL || "https://dscweb.me/").trim(),
   ogImage: String(process.env.NEWS_OG_IMAGE || "https://dscweb.me/images/dsclogo.png").trim(),
   autoRefreshOnStart: String(process.env.AUTO_REFRESH_ON_START || "true").trim().toLowerCase() === "true"
 };

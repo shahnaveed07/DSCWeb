@@ -723,17 +723,58 @@
   function injectDeveloperFooter() {
     if (document.getElementById("dsc-footer")) return;
 
+    const inPages = isPagesContext();
+    const logoSrc = inPages ? "../images/dsclogo.png" : "images/dsclogo.png";
+    const homeUrl = resolvePagePath("index.html");
+    const appsUrl = resolvePagePath("apps.html");
+    const productsUrl = resolvePagePath("products.html");
+    const downloadsUrl = resolvePagePath("downloads.html");
+    const aboutUrl = resolvePagePath("about.html");
+    const contactUrl = resolvePagePath("contact.html");
+    const privacyUrl = resolvePagePath("privacy-policy.html");
+    const termsUrl = resolvePagePath("terms.html");
+
     const footer = document.createElement("footer");
     footer.id = "dsc-footer";
     footer.className = "developer-footer";
     footer.innerHTML = `
-    <div class="footer-content">
-      <p class="footer-copyright">&copy; ${new Date().getFullYear()} DARK SKULL CORPORATION</p>
-      <p class="footer-credit">Developer 
-        <a href="https://naveedmushtaq.tech/" target="_blank" rel="noopener noreferrer" class="footer-name tooltip-trigger" data-tooltip="Visit">
-          Naveed Mushtaq
-        </a>
-      </p>
+    <div class="footer-container">
+      <div class="footer-grid">
+        <div class="footer-col footer-brand-col">
+          <a class="logo-mark" href="${homeUrl}">
+            <img src="${logoSrc}" alt="Dark Skull Corporation" class="header-logo-img" />
+            <span class="logo-text">Dark Skull Corporation</span>
+          </a>
+          <p class="footer-desc mt-10">
+            Professional software studio crafting secure utilities, desktop tools, and future-ready digital experiences.
+          </p>
+        </div>
+        <div class="footer-col">
+          <h4 class="footer-col-title">Explore</h4>
+          <ul class="footer-links">
+            <li><a href="${appsUrl}">Applications</a></li>
+            <li><a href="${productsUrl}">Products</a></li>
+            <li><a href="${downloadsUrl}">Downloads</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4 class="footer-col-title">Company</h4>
+          <ul class="footer-links">
+            <li><a href="${aboutUrl}">About Us</a></li>
+            <li><a href="${contactUrl}">Contact</a></li>
+            <li><a href="${privacyUrl}">Privacy Policy</a></li>
+            <li><a href="${termsUrl}">Terms of Use</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p class="footer-copyright">&copy; ${new Date().getFullYear()} DARK SKULL CORPORATION. ALL RIGHTS RESERVED.</p>
+        <p class="footer-credit">Developer
+          <a href="https://naveedmushtaq.tech/" target="_blank" rel="noopener noreferrer" class="footer-name tooltip-trigger" data-tooltip="Visit Portfolio">
+            Naveed Mushtaq
+          </a>
+        </p>
+      </div>
     </div>
   `;
     document.body.appendChild(footer);
@@ -1344,9 +1385,9 @@
     const statusCard = document.getElementById("status-card");
     const keyCard = document.getElementById("key-card");
     const downloadBtn = document.getElementById("downloadPanelBtn");
-   
-    
-      
+
+
+
     if (nameEl)
       nameEl.textContent = String(currentUser.username || "user").toUpperCase();
     if (planEl)
@@ -3567,7 +3608,7 @@
     <div class="input-group"><label>Latest Panel Version</label><input id="dbSettingsVersion" type="text" value="${rowData.latestVersion || rowData.LatestVersion || "1.0"}"></div>
     <div class="input-group"><label>App Update URL</label><input id="dbSettingsUrl" type="url" value="${rowData.updateUrl || rowData.UpdateUrl || ""}"></div>
     <div class="input-group"><label>Custom Maintenance Reason</label><textarea id="dbSettingsReason" rows="2" style="width:100%; border-radius:8px; padding:8px;">${rowData.maintenanceReason || rowData.MaintenanceReason || ""}</textarea></div>
-    
+
     <h4 class="mt-15 mb-10 text-secondary" style="border-bottom: 1px solid var(--surface-border); padding-bottom: 5px;">Panel Download Links</h4>
     <div class="input-group"><label>Free Panel Link</label><input id="dbSettingsFreeLink" type="url" value="${rowData.freeLink || rowData.FreeLink || ""}"></div>
     <div class="input-group"><label>Streamer Panel Link</label><input id="dbSettingsStreamerLink" type="url" value="${rowData.streamerLink || rowData.StreamerLink || ""}"></div>
@@ -4021,7 +4062,7 @@
         )
       )
         return;
-       
+
       bindSharedAdminModals();
       if (pageName === "Alogin.html") {
         const currentUser = getCurrentUser();
@@ -4048,9 +4089,6 @@
         bindOwnerDatabaseControls();
         await loadSystemControls();
         await loadDbData();
-        if (typeof window.__NEWS_ADMIN_BOOTSTRAP__ === "function") {
-          window.__NEWS_ADMIN_BOOTSTRAP__();
-        }
       }
     })();
   }
