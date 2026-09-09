@@ -836,7 +836,7 @@ tbody tr:hover { background: var(--surface-hover); }
 .section-grid { display: grid; gap: 20px; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
 
 /* Standardized Cards */
-.feature-card, .service-card, .info-card, .contact-card, .cta-card {
+.feature-card, .service-card, .info-card, .contact-card {
   border: 1px solid var(--surface-border);
   border-radius: 18px;
   background: var(--surface);
@@ -922,15 +922,6 @@ tbody tr:hover { background: var(--surface-hover); }
 .faq-item summary::-webkit-details-marker { display: none; }
 .faq-item p { margin-top: 10px; color: var(--muted); line-height: 1.7; font-size: 0.96rem; margin-bottom: 0; }
 
-.cta-card {
-  text-align: center;
-  align-items: center;
-  background: linear-gradient(135deg, rgba(59, 130, 246, 0.14), rgba(56, 189, 248, 0.08));
-  border-color: rgba(96, 165, 250, 0.28);
-}
-.cta-card h2 { margin: 0 0 10px; font-family: "Orbitron", sans-serif; font-size: clamp(1.2rem, 2.2vw, 1.65rem); text-transform: uppercase; }
-.cta-card p { color: var(--muted); margin-bottom: 18px; max-width: 600px; font-size: 1.02rem; }
-
 @media (max-width: 992px) {
   .products-grid { grid-template-columns: repeat(2, 1fr); }
   .footer-grid { grid-template-columns: 1fr 1fr; gap: 24px; }
@@ -967,7 +958,7 @@ tbody tr:hover { background: var(--surface-hover); }
   .panel, .hero, .auth-card { padding: 16px; border-radius: 14px; }
   .logo-text { font-size: 0.82rem; }
   .product-card { padding: 18px; border-radius: 14px; }
-  .feature-card, .service-card, .info-card, .contact-card, .cta-card { padding: 18px; border-radius: 14px; }
+  .feature-card, .service-card, .info-card, .contact-card { padding: 18px; border-radius: 14px; }
   .table-wrap { font-size: 0.9rem; }
 }
 
