@@ -44,6 +44,11 @@ export function injectDeveloperFooter() {
     <div class="footer-container">
       <div class="footer-bottom">
         <p class="footer-copyright">&copy; ${new Date().getFullYear()} DARK SKULL CORPORATION. ALL RIGHTS RESERVED.</p>
+        <p class="footer-credit">Developed By
+          <a href="https://naveedmushtaq.tech/" target="_blank" rel="noopener noreferrer" class="footer-name tooltip-trigger" data-tooltip="Visit Portfolio">
+            Naveed Mushtaq
+          </a>
+        </p>
       </div>
     </div>
   `;

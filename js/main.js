@@ -29,6 +29,7 @@
     "Ulogin.html",
     "checkout.html",
     "freepanel.html",
+    "privacy-policy.html",
   ]);
   const JWT_ROLE_KEYS = [
     "role",
@@ -125,6 +126,7 @@
     if (filename.includes("generatekey")) return "generateKey.html";
     if (filename.includes("checkout")) return "checkout.html";
     if (filename.includes("freepanel")) return "freepanel.html";
+    if (filename.includes("privacy-policy")) return "privacy-policy.html";
     if (filename.includes("change")) return "change.html";
 
     return "index.html";
@@ -731,6 +733,11 @@
     <div class="footer-container">
       <div class="footer-bottom">
         <p class="footer-copyright">&copy; ${new Date().getFullYear()} DARK SKULL CORPORATION. ALL RIGHTS RESERVED.</p>
+        <p class="footer-credit">Developed By
+          <a href="https://naveedmushtaq.tech/" target="_blank" rel="noopener noreferrer" class="footer-name tooltip-trigger" data-tooltip="Visit Portfolio">
+            Naveed Mushtaq
+          </a>
+        </p>
       </div>
     </div>
   `;
@@ -992,6 +999,7 @@
         "adash.html",
         "ownerdb.html",
         "generatekey.html",
+        "privacy-policy.html",
       ].includes(page);
       if (isAdminPage) return false;
 
