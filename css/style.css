@@ -442,7 +442,6 @@ input:focus-visible, select:focus-visible { outline: none; border-color: var(--p
 .panel-header h2, .panel-header h3 { margin: 0; font-size: clamp(1rem, 2vw, 1.35rem); }
 
 .hero {
-  position: relative;
   overflow: hidden;
 }
 .hero p { margin-top: 12px; margin-bottom: 0; max-width: 720px; color: var(--muted); font-size: clamp(1rem, 1.8vw, 1.15rem); line-height: 1.7; }
@@ -473,7 +472,6 @@ input:focus-visible, select:focus-visible { outline: none; border-color: var(--p
 .product-features li::before { content: "✓"; position: absolute; left: 0; color: var(--secondary); font-weight: 700; }
 
 .product-card.elite { border: 1px solid var(--elite-border); background: linear-gradient(180deg, var(--elite-bg), rgba(255, 255, 255, 0.01)); }
-.product-card.elite:hover { box-shadow: var(--card-hover-shadow); }
 .elite-badge {
   position: absolute; top: 12px; right: 12px; display: inline-flex; align-items: center; justify-content: center;
   background: rgba(251, 191, 36, 0.12); color: var(--elite-text-gold); border: 1px solid rgba(251, 191, 36, 0.4);
@@ -786,7 +784,7 @@ tbody tr:hover { background: var(--surface-hover); }
 }
 
 .footer-content { text-align: center; padding: 25px 20px; }
-.footer-copyright { margin: 0; font-size: 0.85rem; color: var(--muted); }
+.footer-copyright { margin: 0; font-size: 0.85rem; color: var(--muted); text-transform: none; }
 .footer-credit { margin: 0; font-size: 0.9rem; color: var(--text); font-weight: 600; }
 .footer-name { color: var(--primary); font-weight: 700; }
 
@@ -1000,25 +998,8 @@ tbody tr:hover { background: var(--surface-hover); }
     box-shadow: var(--shadow-sm);
   }
 
-  .product-card:hover,
-  .feature-card:hover,
-  .service-card:hover,
-  .info-card:hover,
-  .contact-card:hover {
-    transform: translateY(-1px);
-    box-shadow: var(--card-hover-shadow);
-  }
-
-  .product-card.elite,
-  .btn-download,
   .skeleton-anim {
     animation: none;
-  }
-
-  .btn-download { box-shadow: none; }
-
-  .loader-circle {
-    box-shadow: none;
   }
 
   .modal-card {
