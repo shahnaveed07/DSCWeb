@@ -290,7 +290,7 @@ a {
   display: flex; align-items: center; justify-content: space-between;
   gap: 12px; padding: 12px 16px; border-radius: 10px;
   border: 1px solid var(--surface-border); background: var(--surface-solid);
-  box-shadow: var(--shadow-sm);
+  box-shadow: var(--shadow-sm); position: relative;
 }
 
 .page-shell { width: min(1160px, calc(100% - 24px)); margin: 26px auto 30px; }
@@ -309,6 +309,21 @@ a {
   white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
 }
 .header-actions { display: flex; align-items: center; gap: 10px; }
+.menu-container { position: relative; }
+.menu-toggle { gap: 8px; }
+.menu-panel {
+  position: absolute; z-index: 20; top: calc(100% + 10px); right: 0;
+  display: grid; min-width: 190px; padding: 8px;
+  border: 1px solid var(--surface-border); border-radius: 8px;
+  background: var(--surface-solid); box-shadow: var(--shadow);
+}
+.menu-panel[hidden] { display: none; }
+.menu-panel .nav-link {
+  display: block; padding: 9px 10px; border-bottom: 0; border-radius: 6px;
+}
+.menu-panel .nav-link:hover, .menu-panel .nav-link.active {
+  background: var(--surface-hover); border-bottom-color: transparent;
+}
 
 /* =========================================
    5. COMPONENTS: BUTTONS

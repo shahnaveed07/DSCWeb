@@ -58,7 +58,7 @@ export function injectDeveloperFooter() {
 export function addHelpButtonToHeader() {
   const headerActions = document.querySelector(".header-actions");
   if (!headerActions) return;
-  if (headerActions.querySelector(`a[href="${HELP_URL}"]`)) return;
+  if (document.querySelector(`.site-header a[href="${HELP_URL}"]`)) return;
 
   const helpLink = document.createElement("a");
   helpLink.className = "btn btn-outline";
@@ -67,8 +67,40 @@ export function addHelpButtonToHeader() {
   headerActions.appendChild(helpLink);
 }
 
+export function bindPrimaryNavigation() {
+  const menuToggle = document.querySelector("[data-menu-toggle]");
+  const menu = document.getElementById("primary-menu");
+  if (!menuToggle || !menu) return;
+
+  const closeMenu = () => {
+    menu.hidden = true;
+    menuToggle.setAttribute("aria-expanded", "false");
+  };
+
+  const toggleMenu = () => {
+    const isOpen = !menu.hidden;
+    menu.hidden = isOpen;
+    menuToggle.setAttribute("aria-expanded", String(!isOpen));
+  };
+
+  menuToggle.addEventListener("click", toggleMenu);
+  menu.addEventListener("click", (event) => {
+    if (event.target.closest("a")) closeMenu();
+  });
+  document.addEventListener("click", (event) => {
+    if (!menu.hidden && !event.target.closest(".menu-container")) closeMenu();
+  });
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape" && !menu.hidden) {
+      closeMenu();
+      menuToggle.focus();
+    }
+  });
+}
+
 export function bindCommonShell(handleLogout) {
   setTheme(resolveInitialTheme());
+  bindPrimaryNavigation();
   document.querySelectorAll("[data-theme-toggle]").forEach((button) => {
     button.addEventListener("click", toggleTheme);
   });

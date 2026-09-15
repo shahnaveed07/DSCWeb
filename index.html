@@ -4,30 +4,29 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <title>Dark Skull Corporation | Professional Software Studio</title>
+    <title>Dark Skull Corporation</title>
+
     <meta
       name="description"
-      content="Dark Skull Corporation builds professional software, secure utilities, and polished digital experiences for modern teams."
+      content="Dark Skull Corporation builds software, apps, tools, and games."
     />
+
     <meta
       name="keywords"
-      content="dark skull corporation, dsc software, software studio, desktop tools, mobile apps, secure utilities"
+      content="Dark Skull Corporation, DSC, dscweb, software, apps, tools, games"
     />
+
     <meta name="author" content="Dark Skull Corporation" />
     <meta name="robots" content="index, follow" />
-    <meta name="theme-color" content="#0f172a" />
+    <meta name="theme-color" content="#111111" />
+
     <meta
       name="google-site-verification"
       content="Hw79fkwrion-b4AozRAnpjjcOAv9kHsCs40eEAq00c4"
     />
 
     <link rel="canonical" href="https://dscweb.me/" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;800&family=Rajdhani:wght@400;500;600;700&display=swap"
-    />
+
     <link
       rel="preload"
       as="image"
@@ -35,86 +34,70 @@
       fetchpriority="high"
     />
 
+    <!-- Open Graph -->
     <meta property="og:site_name" content="Dark Skull Corporation" />
-    <meta
-      property="og:title"
-      content="Dark Skull Corporation | Professional Software Studio"
-    />
+    <meta property="og:title" content="Dark Skull Corporation" />
     <meta
       property="og:description"
-      content="Secure software products, polished desktop and mobile tools, and future-ready digital experiences by Dark Skull Corporation."
+      content="Software, apps, tools, and games built by Dark Skull Corporation."
     />
     <meta property="og:url" content="https://dscweb.me/" />
     <meta property="og:type" content="website" />
     <meta property="og:image" content="https://dscweb.me/images/dsclogo.png" />
     <meta property="og:image:alt" content="Dark Skull Corporation logo" />
 
+    <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:site" content="@dscweb" />
-    <meta
-      name="twitter:title"
-      content="Dark Skull Corporation | Professional Software Studio"
-    />
+    <meta name="twitter:title" content="Dark Skull Corporation" />
     <meta
       name="twitter:description"
-      content="Professional software products and secure digital experiences by Dark Skull Corporation."
+      content="Software, apps, tools, and games built by Dark Skull Corporation."
     />
     <meta name="twitter:image" content="https://dscweb.me/images/dsclogo.png" />
     <meta name="twitter:image:alt" content="Dark Skull Corporation logo" />
 
+    <!-- Icons -->
     <link rel="icon" type="image/png" href="images/dsclogo.png" />
     <link rel="shortcut icon" href="images/dsclogo.png" />
     <link rel="apple-touch-icon" href="images/dsclogo.png" />
+
     <link rel="manifest" href="site.webmanifest" />
 
+    <!-- Main stylesheet -->
     <link rel="stylesheet" href="css/style.css" />
 
+    <!-- Organization structured data -->
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
         "@type": "Organization",
         "name": "Dark Skull Corporation",
-        "alternateName": ["DSC", "Dark Skull Corp", "dscweb"],
+        "alternateName": "DSC",
         "url": "https://dscweb.me",
         "logo": "https://dscweb.me/images/dsclogo.png",
-        "sameAs": ["https://github.com/"],
-        "description": "Professional software studio crafting secure utilities and polished digital products."
-      }
-    </script>
-    <script type="application/ld+json">
-      {
-        "@context": "https://schema.org",
-        "@type": "WebSite",
-        "name": "Dark Skull Corporation",
-        "url": "https://dscweb.me/",
-        "potentialAction": {
-          "@type": "SearchAction",
-          "target": "https://dscweb.me/?q={search_term_string}",
-          "query-input": "required name=search_term_string"
-        }
+        "description": "Dark Skull Corporation builds software, apps, tools, and games."
       }
     </script>
   </head>
+
   <body>
+    <!-- =========================================
+         HEADER
+         ========================================= -->
     <header class="site-header">
-      <a class="logo-mark" href="index.html">
+      <a
+        class="logo-mark"
+        href="index.html"
+        aria-label="Dark Skull Corporation Home"
+      >
         <img
           src="images/dsclogo.png"
-          alt="Dark Skull Corporation DSCWeb Logo"
+          alt="Dark Skull Corporation logo"
           class="header-logo-img"
         />
+
         <span class="logo-text">Dark Skull Corporation</span>
       </a>
-
-      <nav class="nav-links" aria-label="Primary navigation">
-        <a class="nav-link active" href="index.html">Home</a>
-        <a class="nav-link" href="pages/apps.html">Apps</a>
-        <a class="nav-link" href="pages/products.html">Products</a>
-        <a class="nav-link" href="pages/downloads.html">Downloads</a>
-        <a class="nav-link" href="pages/about.html">About</a>
-        <a class="nav-link" href="pages/contact.html">Contact</a>
-        <a class="nav-link" href="pages/privacy-policy.html">Privacy Policy</a>
-      </nav>
 
       <div class="header-actions">
         <button
@@ -131,149 +114,281 @@
           class="btn btn-download d-none"
           href="pages/downloads.html"
           target="_blank"
+          rel="noopener noreferrer"
         >
           📥 Download<span class="hide-mobile"> Panel</span>
         </a>
 
-        <a class="btn btn-primary" href="pages/Ulogin.html">Login</a>
+        <a class="btn btn-primary" href="pages/Ulogin.html"> Login </a>
+
+        <div class="menu-container">
+          <button
+            type="button"
+            class="btn btn-neutral menu-toggle"
+            data-menu-toggle
+            aria-expanded="false"
+            aria-controls="primary-menu"
+          >
+            <span aria-hidden="true">☰</span>
+            <span>Menu</span>
+          </button>
+
+          <nav
+            id="primary-menu"
+            class="menu-panel"
+            aria-label="Primary navigation"
+            hidden
+          >
+            <a class="nav-link active" href="index.html">Home</a>
+            <a class="nav-link" href="pages/apps.html">Apps</a>
+            <a class="nav-link" href="pages/products.html">Products</a>
+            <a class="nav-link" href="pages/downloads.html">Downloads</a>
+            <a class="nav-link" href="pages/about.html">About</a>
+            <a class="nav-link" href="pages/contact.html">Contact</a>
+            <a
+              class="nav-link"
+              href="https://discord.gg/XB2Zjmsb7K"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Discord
+            </a>
+          </nav>
+        </div>
       </div>
     </header>
 
+    <!-- =========================================
+         MAIN CONTENT
+         ========================================= -->
     <main class="page-shell page-stack">
+      <!-- HERO -->
       <section class="hero">
-        <span class="hero-eyebrow">Professional Software Studio</span>
-        <h1>We build dependable digital products for modern teams.</h1>
+        <span class="hero-eyebrow">Dark Skull Corporation</span>
+
+        <h1>Software made to be useful.</h1>
+
         <p>
-          Dark Skull Corporation creates secure software, polished desktop and mobile utilities,
-          and future-ready digital experiences with a focus on performance, trust, and clarity.
+          We build apps, tools, games, and digital products with a focus on
+          useful features and straightforward experiences.
         </p>
+
         <div class="hero-actions">
-          <a class="btn btn-primary" href="pages/products.html">Explore Products</a>
-          <a class="btn btn-outline" href="pages/contact.html">Book a Consultation</a>
+          <a class="btn btn-primary" href="pages/apps.html"> Explore Apps </a>
+
+          <a class="btn btn-outline" href="pages/products.html">
+            View Products
+          </a>
         </div>
       </section>
 
-      <section class="panel" aria-labelledby="company-highlights">
+      <!-- WHAT WE BUILD -->
+      <section class="panel" aria-labelledby="what-we-build">
         <div class="page-intro">
-          <span class="section-eyebrow">Why DSC</span>
-          <h2 id="company-highlights">Built to scale from concept to launch.</h2>
+          <span class="section-eyebrow">What We Build</span>
+
+          <h2 id="what-we-build">Apps, tools, and games.</h2>
+
           <p>
-            Our team blends product thinking, modern engineering, and thoughtful design to ship software that feels reliable from day one.
+            Different projects, one simple goal: build software that people can
+            actually use.
           </p>
         </div>
+
         <div class="section-grid">
           <article class="feature-card">
-            <span class="card-badge">Security</span>
-            <h3>Secure by design</h3>
-            <p>Protected infrastructure, trusted workflows, and reliable user experiences built around privacy.</p>
+            <span class="card-badge">Apps</span>
+
+            <h3>Applications</h3>
+
+            <p>
+              Mobile and desktop apps built around practical features and
+              everyday use.
+            </p>
           </article>
+
           <article class="feature-card">
-            <span class="card-badge">Engineering</span>
-            <h3>Modern product delivery</h3>
-            <p>Fast iterations, clean architecture, and consistent quality across web, desktop, and mobile products.</p>
+            <span class="card-badge">Tools</span>
+
+            <h3>Software Tools</h3>
+
+            <p>
+              Focused tools made to handle specific tasks without adding
+              unnecessary complexity.
+            </p>
           </article>
+
           <article class="feature-card">
-            <span class="card-badge">Innovation</span>
-            <h3>Future-ready tools</h3>
-            <p>From utility apps to upcoming AI-driven experiences, we design products that are ready for what comes next.</p>
+            <span class="card-badge">Games</span>
+
+            <h3>Games</h3>
+
+            <p>
+              Puzzle games and interactive projects built for people who enjoy
+              playing and exploring.
+            </p>
           </article>
         </div>
       </section>
 
-      <section class="panel" aria-labelledby="featured-apps">
+      <!-- FEATURED WORK -->
+      <section class="panel" aria-labelledby="featured-products">
         <div class="page-intro">
-          <span class="section-eyebrow">Featured Apps & Games</span>
-          <h2 id="featured-apps">A growing portfolio of practical software.</h2>
-          <p>Explore our active utility tools, mobile applications, and interactive experiences.</p>
+          <span class="section-eyebrow">Featured Work</span>
+
+          <h2 id="featured-products">Some of our projects.</h2>
+
+          <p>Take a look at a few applications and games from DSC.</p>
         </div>
+
         <div class="section-grid">
+          <!-- Calculator -->
           <article class="feature-card">
             <span class="card-badge">Utility</span>
+
             <h3>Calculator</h3>
-            <p>Fast, compact productivity utility for everyday problem solving and calculation workflows.</p>
+
+            <p>A simple calculator for everyday mathematical calculations.</p>
+
             <div class="card-actions">
-              <a class="btn btn-outline" href="pages/apps.html">View App</a>
+              <a class="btn btn-outline" href="pages/apps.html"> View App </a>
             </div>
           </article>
+
+          <!-- QR Scanner -->
           <article class="feature-card">
             <span class="card-badge">Android App</span>
+
             <h3>QR Scanner | Generator</h3>
-            <p>High-speed scanning and generation of QR codes. Available directly on Google Play.</p>
+
+            <p>
+              Scan QR codes and barcodes, or create QR codes from text and
+              links.
+            </p>
+
             <div class="card-actions">
-              <a class="btn btn-primary" href="https://play.google.com/store/apps/details?id=com.dsc.qrscanner" target="_blank" rel="noopener noreferrer">Install on Play Store</a>
+              <a
+                class="btn btn-primary"
+                href="https://play.google.com/store/apps/details?id=com.dsc.qrscanner"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Google Play
+              </a>
             </div>
           </article>
+
+          <!-- Mind Matrix -->
           <article class="feature-card">
-            <span class="card-badge">Game & Puzzle</span>
+            <span class="card-badge">Game</span>
+
             <h3>Mind Matrix</h3>
-            <p>Game-inspired interaction design with a polished, modern interface and puzzle challenges.</p>
+
+            <p>
+              A collection of puzzle games built around logic, memory, and quick
+              thinking.
+            </p>
+
             <div class="card-actions">
-              <a class="btn btn-primary" href="https://play.google.com/store/apps/details?id=com.dsc.mindmatrix" target="_blank" rel="noopener noreferrer">Install on Play Store</a>
+              <a
+                class="btn btn-primary"
+                href="https://play.google.com/store/apps/details?id=com.dsc.mindmatrix"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Google Play
+              </a>
             </div>
           </article>
         </div>
       </section>
 
-      <section class="panel" aria-labelledby="services">
+      <!-- DSC PRINCIPLES -->
+      <section class="panel" aria-labelledby="dsc-principles">
         <div class="page-intro">
-          <span class="section-eyebrow">Capabilities</span>
-          <h2 id="services">From concept to launch, we shape dependable software.</h2>
-          <p>Full-lifecycle design and engineering solutions tailored for quality and longevity.</p>
+          <span class="section-eyebrow">What Matters</span>
+
+          <h2 id="dsc-principles">Built with the basics in mind.</h2>
+
+          <p>
+            Good software does not need to be complicated. We care about the
+            parts that matter to the people using it.
+          </p>
         </div>
+
         <div class="section-grid">
           <article class="service-card">
-            <span class="card-badge">Design</span>
-            <h3>Product Design</h3>
-            <ul class="feature-list">
-              <li>Interface systems & component architecture</li>
-              <li>Intuitive user interaction flows</li>
-              <li>Brand and visual direction</li>
-            </ul>
+            <span class="card-badge">01</span>
+
+            <h3>Useful</h3>
+
+            <p>
+              Features should have a clear purpose and solve a real problem.
+            </p>
           </article>
+
           <article class="service-card">
-            <span class="card-badge">Engineering</span>
-            <h3>Web & App Engineering</h3>
-            <ul class="feature-list">
-              <li>High-performance responsive websites</li>
-              <li>Lightweight desktop utilities</li>
-              <li>Cross-platform mobile delivery</li>
-            </ul>
+            <span class="card-badge">02</span>
+
+            <h3>Simple</h3>
+
+            <p>
+              Interfaces should be easy to understand without getting in the
+              user's way.
+            </p>
           </article>
+
           <article class="service-card">
-            <span class="card-badge">Operations</span>
-            <h3>Release & Support</h3>
-            <ul class="feature-list">
-              <li>Automated quality assurance</li>
-              <li>Deployment & security planning</li>
-              <li>Ongoing maintenance workflows</li>
-            </ul>
+            <span class="card-badge">03</span>
+
+            <h3>Reliable</h3>
+
+            <p>We test, fix, and improve our products as they develop.</p>
           </article>
         </div>
       </section>
 
-      <section class="panel" aria-labelledby="faq-title">
+      <!-- ABOUT -->
+      <section class="panel" aria-labelledby="about-dsc">
         <div class="page-intro">
-          <span class="section-eyebrow">FAQ</span>
-          <h2 id="faq-title">Answers for teams and product partners.</h2>
-          <p>Common questions about our products, platform security, and development roadmap.</p>
-        </div>
-        <div class="faq-list">
-          <details class="faq-item">
-            <summary>What kind of products do you build?</summary>
-            <p>We build modern web experiences, utility software, internal tools, and polished applications for both personal and professional use.</p>
-          </details>
-          <details class="faq-item">
-            <summary>Can you support future mobile and desktop releases?</summary>
-            <p>Yes. Our roadmap includes desktop utilities, mobile experiences, and AI-powered products designed for long-term growth.</p>
-          </details>
-          <details class="faq-item">
-            <summary>Is the platform secure?</summary>
-            <p>Security is a core part of our process, from architecture decisions to user-facing protection and privacy practices.</p>
-          </details>
+          <span class="section-eyebrow">Dark Skull Corporation</span>
+
+          <h2 id="about-dsc">We build our own software.</h2>
+
+          <p>
+            Dark Skull Corporation is an independent software company focused on
+            applications, tools, and games. Our projects are developed and
+            improved over time as we learn from testing and real use.
+          </p>
+
+          <div class="hero-actions">
+            <a class="btn btn-outline" href="pages/about.html"> About DSC </a>
+          </div>
         </div>
       </section>
 
+      <!-- CONTACT -->
+      <section class="panel" aria-labelledby="contact-dsc">
+        <div class="page-intro">
+          <span class="section-eyebrow">Contact</span>
+
+          <h2 id="contact-dsc">Want to get in touch?</h2>
+
+          <p>
+            Have a question about one of our products or want to discuss an
+            idea? We'd be happy to hear from you.
+          </p>
+
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="pages/contact.html">
+              Contact Us
+            </a>
+          </div>
+        </div>
+      </section>
     </main>
+
+    <!-- Footer is injected by the existing application bootstrap. -->
 
     <script type="module" src="js/main.js"></script>
   </body>
