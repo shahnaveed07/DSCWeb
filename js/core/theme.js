@@ -43,7 +43,7 @@ export function injectDeveloperFooter() {
   footer.innerHTML = `
     <div class="footer-container">
       <div class="footer-bottom">
-        <p class="footer-copyright">&copy; ${new Date().getFullYear()}Dark Skull Corporation. All rights reserved..</p>
+        <p class="footer-copyright">&copy; ${new Date().getFullYear()} Dark Skull Corporation. All rights reserved.</p>
         <p class="footer-credit">Developed By
           <a href="https://naveedmushtaq.tech/" target="_blank" rel="noopener noreferrer" class="footer-name tooltip-trigger" data-tooltip="Visit Portfolio">
             Naveed Mushtaq
