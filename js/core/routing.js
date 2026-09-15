@@ -22,7 +22,7 @@ export function getCurrentPageName() {
   if (filename.includes("udash")) return "Udash.html";
   if (filename.includes("adash")) return "Adash.html";
   if (filename.includes("ownerdb")) return "OwnerDB.html";
-  if (filename.includes("add")) return "add.html";
+  if (filename.includes("generatekey")) return "generateKey.html";
   if (filename.includes("checkout")) return "checkout.html";
   if (filename.includes("freepanel")) return "freepanel.html";
   if (filename.includes("change")) return "change.html";
@@ -58,11 +58,11 @@ export function revealProtectedBody() {
 
   document.body.style.display = "";
 
-  // 🔥 existing animation hook
-  
-  document.body.style.transition = "all 0.4s ease";
+  document.body.style.opacity = "0";
+  document.body.style.transform = "translateY(4px)";
+  document.body.style.transition = "opacity 0.24s ease, transform 0.24s ease";
 
-  setTimeout(() => {
+  requestAnimationFrame(() => {
     document.body.style.opacity = "1";
     document.body.style.transform = "translateY(0)";
   }, 50);

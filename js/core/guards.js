@@ -190,7 +190,7 @@ try {
   if (!result.ok || !isMaint) return false;
 
   const page = getCurrentPageName().toLowerCase();
-  const isAdminPage = ["alogin.html", "adash.html", "ownerdb.html", "add.html"].includes(page);
+  const isAdminPage = ["alogin.html", "adash.html", "ownerdb.html", "generatekey.html"].includes(page);
   if (isAdminPage) return false;
 
   revealProtectedBody();
