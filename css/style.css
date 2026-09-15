@@ -1031,3 +1031,90 @@ tbody tr:hover { background: var(--surface-hover); }
     scroll-behavior: auto !important;
   }
 }
+
+/* Standalone fallback page */
+.status-page {
+  min-height: 100vh;
+}
+
+.status-layout {
+  width: min(100%, 640px);
+  min-height: 100vh;
+  margin: 0 auto;
+  padding: 24px;
+  display: grid;
+  place-items: center;
+}
+
+.status-panel {
+  width: 100%;
+  padding: clamp(32px, 7vw, 64px) clamp(20px, 7vw, 56px);
+  text-align: center;
+}
+
+.status-brand {
+  display: inline-flex;
+  border-radius: 50%;
+}
+
+.status-logo {
+  width: clamp(64px, 13vw, 88px);
+  height: clamp(64px, 13vw, 88px);
+  border: 1px solid var(--surface-border);
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.status-content {
+  margin-top: 28px;
+}
+
+.status-badge {
+  margin-bottom: 16px;
+}
+
+.status-content h1 {
+  margin: 0;
+  font-size: clamp(1.7rem, 5vw, 2.45rem);
+  line-height: 1.2;
+}
+
+.status-content p {
+  max-width: 430px;
+  margin: 14px auto 0;
+  color: var(--muted);
+  font-size: 1.05rem;
+  line-height: 1.7;
+}
+
+.status-actions {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-top: 32px;
+}
+
+.status-actions .btn {
+  min-width: 132px;
+}
+
+@media (max-width: 520px) {
+  .status-layout {
+    width: 100%;
+    padding: 14px 9px;
+  }
+
+  .status-panel {
+    padding: 32px 18px;
+  }
+
+  .status-actions {
+    flex-direction: column;
+    margin-top: 26px;
+  }
+
+  .status-actions .btn {
+    width: 100%;
+  }
+}

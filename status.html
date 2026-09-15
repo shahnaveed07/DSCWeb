@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Software Update | DSCWeb</title>
+    <meta
+      name="description"
+      content="The current DSCWeb software update is temporarily unavailable."
+    />
+    <meta name="robots" content="noindex, nofollow" />
+    <link rel="icon" type="image/png" href="images/dsclogo.png" />
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body class="status-page">
+    <main class="status-layout">
+      <section class="panel status-panel" aria-labelledby="status-title">
+        <a class="status-brand" href="index.html" aria-label="DSCWeb home">
+          <img src="images/dsclogo.png" alt="" class="status-logo" />
+        </a>
+
+        <div class="status-content">
+          <span id="status-label" class="card-badge status-badge">Software Update</span>
+          <h1 id="status-title">Update temporarily unavailable</h1>
+          <p id="status-description">
+            We couldn't reach the current update server. Please try again shortly.
+          </p>
+        </div>
+
+        <div class="status-actions" aria-label="Status page actions">
+          <button id="status-retry" class="btn btn-primary" type="button">Try Again</button>
+          <a class="btn btn-outline" href="index.html">Back to Home</a>
+        </div>
+      </section>
+    </main>
+
+    <script>
+      (function () {
+        var states = {
+          update: {
+            label: "Software Update",
+            title: "Update temporarily unavailable",
+            description: "We couldn't reach the current update server. Please try again shortly."
+          },
+          maintenance: {
+            label: "System Maintenance",
+            title: "We'll be back shortly",
+            description: "DSCWeb is temporarily unavailable while maintenance is being performed."
+          },
+          unavailable: {
+            label: "Service Unavailable",
+            title: "This service is temporarily unavailable",
+            description: "Please try again shortly."
+          },
+          deployment: {
+            label: "Deployment",
+            title: "Changes are being deployed",
+            description: "New changes are currently being deployed. Please try again shortly."
+          },
+          default: {
+            label: "Temporarily Unavailable",
+            title: "Something is temporarily unavailable",
+            description: "Please try again shortly."
+          }
+        };
+
+        var type = new URLSearchParams(window.location.search).get("type");
+        var state = states[type] || states.default;
+
+        document.getElementById("status-label").textContent = state.label;
+        document.getElementById("status-title").textContent = state.title;
+        document.getElementById("status-description").textContent = state.description;
+        document.getElementById("status-retry").addEventListener("click", function () {
+          window.location.reload();
+        });
+      })();
+    </script>
+  </body>
+</html>
