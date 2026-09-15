@@ -22,7 +22,7 @@ const DB_ENDPOINTS = {
   settings: "/api/admin/settings/all",
   freeSettings: "/api/admin/settings/all", // ?? Naya option yahan add hua
   freeusers: "/api/admin/free-users",
-  panelUpdates: "/api/admin/panel-updates" // ?? Naya option yahan add hua
+  panelUpdates: "/api/auth/panel-updates" // Matches the legacy read endpoint.
 };
 const USER_COLUMN_ORDER = ["id", "Id", "username", "Username", "plan", "Plan", "keyValue", "KeyValue", "hwid", "HWID", "isBanned", "IsBanned", "failedLoginAttempts", "FailedLoginAttempts", "lockoutEnd", "LockoutEnd", "expiryTime", "ExpiryTime", "registrationTime", "RegistrationTime", "lastLoginTime", "LastLoginTime"];
 const FREE_USER_COLUMN_ORDER = ["id", "Id", "username", "Username", "hwid", "HWID", "CaptchaToken", "CaptchaToken", "isBanned", "IsBanned", "failedLoginAttempts", "FailedLoginAttempts", "lockoutEnd", "LockoutEnd", "firstLoginTime", "FirstLoginTime", "lastLoginTime", "LastLoginTime"];
@@ -45,7 +45,28 @@ export function updateMaintenanceButtonUI(isOn) {
   button.textContent = isOn ? "Maintenance: ON" : "Maintenance: OFF";
 }
 
-export function buildSettingsPayload(overrides) {}
+export function buildSettingsPayload(overrides = {}) {
+  const current = cachedSettingsRecord || {};
+  return {
+    id: readObjectValue(current, ["id", "Id"], 0),
+    isMaintenanceMode: overrides.isMaintenanceMode ?? readObjectValue(current, ["isMaintenanceMode", "IsMaintenanceMode"], false),
+    maintenanceReason: overrides.maintenanceReason ?? readObjectValue(current, ["maintenanceReason", "MaintenanceReason"], ""),
+    maxFreeSlots: overrides.maxFreeSlots ?? readObjectValue(current, ["maxFreeSlots", "MaxFreeSlots"], 20),
+    latestVersion: overrides.latestVersion ?? readObjectValue(current, ["latestVersion", "LatestVersion"], "1.0"),
+    updateUrl: overrides.updateUrl ?? readObjectValue(current, ["updateUrl", "UpdateUrl"], ""),
+    showHomeDownloadBtn: overrides.showHomeDownloadBtn ?? readObjectValue(current, ["showHomeDownloadBtn", "ShowHomeDownloadBtn"], false),
+    freeValidDays: overrides.freeValidDays ?? readObjectValue(current, ["freeValidDays", "FreeValidDays"], 30),
+    freeUsername: overrides.freeUsername ?? readObjectValue(current, ["freeUsername", "FreeUsername"], ""),
+    freePassword: overrides.freePassword ?? readObjectValue(current, ["freePassword", "FreePassword"], ""),
+    freeLink: overrides.freeLink ?? readObjectValue(current, ["freeLink", "FreeLink"], ""),
+    streamerLink: overrides.streamerLink ?? readObjectValue(current, ["streamerLink", "StreamerLink"], ""),
+    sniperLink: overrides.sniperLink ?? readObjectValue(current, ["sniperLink", "SniperLink"], ""),
+    specialLink: overrides.specialLink ?? readObjectValue(current, ["specialLink", "SpecialLink"], ""),
+    aimbotLink: overrides.aimbotLink ?? readObjectValue(current, ["aimbotLink", "AimbotLink"], ""),
+    premiumLink: overrides.premiumLink ?? readObjectValue(current, ["premiumLink", "PremiumLink"], ""),
+    customisedLink: overrides.customisedLink ?? readObjectValue(current, ["customisedLink", "CustomisedLink"], ""),
+  };
+}
 
 export function populateSystemControlsForm(settings) {
   cachedSettingsRecord = settings || {};
@@ -752,6 +773,9 @@ export function deleteDbRecord(id) {
 }
 
 export function bindOwnerDatabaseControls() {
+  const dbSearchInput = document.getElementById("dbSearchInput");
+  let searchTimer = null;
+
   document.getElementById("systemControlsForm")?.addEventListener("submit", (event) => {
     event.preventDefault();
     saveSystemControls();
@@ -765,10 +789,13 @@ export function bindOwnerDatabaseControls() {
     currentDbTable = event.target.value;
     loadDbData();
   });
-  document.getElementById("dbSearchInput")?.addEventListener("input", (event) => {
+  dbSearchInput?.addEventListener("input", (event) => {
     searchQuery = event.target.value;
     currentPage = 1;
-    applyFilterAndPagination();
+    if (searchTimer) window.clearTimeout(searchTimer);
+    searchTimer = window.setTimeout(() => {
+      applyFilterAndPagination();
+    }, 120);
   });
   document.getElementById("prevPageBtn")?.addEventListener("click", () => {
     currentPage -= 1;

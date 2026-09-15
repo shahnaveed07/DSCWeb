@@ -108,8 +108,19 @@ export async function loadUserDash() {
     const expiryIcon = document.getElementById("expiryIcon");
     const statusIcon = document.getElementById("statusIcon");
 
-    // Check Expiry (Agar N/A Temp hai ya date nikal gayi hai)
-    const isTempOrExpired = !liveExpiry || new Date(liveExpiry) < new Date();
+    let isTempOrExpired = false;
+    if (
+      liveStatus.toLowerCase() === "pending" ||
+      normalizedKeyStatus === "UNUSED" ||
+      livePlan.toLowerCase() === "temp"
+    ) {
+      isTempOrExpired = false;
+    } else {
+      isTempOrExpired =
+        !liveExpiry ||
+        new Date(liveExpiry).getFullYear() < 2000 ||
+        new Date(liveExpiry) < new Date();
+    }
 
     if (persistedUser && planEl) planEl.textContent = livePlan.toUpperCase();
     
@@ -159,9 +170,11 @@ export async function loadUserDash() {
     }
 
     if (copyBtn && hasIssuedKey) {
+      copyBtn.classList.remove("d-none", "hidden-default");
       copyBtn.style.display = "block";
       copyBtn.onclick = () => copyTextToClipboard(orderKey, copyBtn, "Copy Key");
     } else if (copyBtn) {
+      copyBtn.classList.add("d-none");
       copyBtn.style.display = "none";
       copyBtn.onclick = null;
     }

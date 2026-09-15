@@ -134,14 +134,14 @@ import { getCurrentPageName } from "../core/routing.js";
 
 export function startKeepAlivePing() {
 setInterval(async () => {
+  if (document.hidden) return;
   try {
     await fetch(apiUrl("/api/public/free-panel"), {
       method: "GET",
       cache: "no-store"
     });
-    console.log("Ping sent");
   } catch (e) {
-    console.warn("Ping failed");
+    void e;
   }
 }, 2 * 60 * 1000);
 }

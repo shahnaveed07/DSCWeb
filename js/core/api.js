@@ -41,9 +41,72 @@ export function isAbortError(err) {
   return Boolean(err && (err.name === "AbortError" || /abort|timed out/i.test(String(err.message || ""))));
 }
 
-export async function fetchWithTimeout(url, options = {}
+export async function fetchWithTimeout(
+  url,
+  options = {},
+  timeoutMs = REQUEST_TIMEOUT_MS,
+) {
+  const controller = new AbortController();
+  const timeoutId = window.setTimeout(() => controller.abort(), timeoutMs);
 
-export async function requestJson(path, options = {}
+  try {
+    return await fetch(url, {
+      cache: "no-store",
+      ...options,
+      signal: controller.signal,
+    });
+  } finally {
+    window.clearTimeout(timeoutId);
+  }
+}
+
+export async function requestJson(path, options = {}) {
+  const {
+    method = "GET",
+    headers = {},
+    body,
+    timeoutMs = REQUEST_TIMEOUT_MS,
+    retries,
+  } = options;
+
+  const normalizedMethod = String(method || "GET").toUpperCase();
+  const retryCount =
+    retries !== undefined ? retries : normalizedMethod === "GET" ? 1 : 0;
+  const mergedHeaders = { Accept: "application/json", ...headers };
+  const fetchOptions = { method: normalizedMethod, headers: mergedHeaders };
+
+  if (body !== undefined) {
+    if (!mergedHeaders["Content-Type"])
+      mergedHeaders["Content-Type"] = "application/json";
+    fetchOptions.body =
+      typeof body === "string" ? body : JSON.stringify(body);
+  }
+
+  for (let attempt = 0; attempt <= retryCount; attempt += 1) {
+    const response = await fetchWithTimeout(
+      apiUrl(path),
+      fetchOptions,
+      timeoutMs,
+    );
+    const data = await readResponseBody(response);
+
+    if (
+      !response.ok &&
+      RETRYABLE_STATUS_CODES.has(response.status) &&
+      attempt < retryCount
+    ) {
+      await new Promise((resolve) =>
+        window.setTimeout(resolve, 400 * (attempt + 1)),
+      );
+      continue;
+    }
+
+    if (response.ok) touchCurrentUserActivity();
+    return { ok: response.ok, status: response.status, data, path };
+  }
+
+  return { ok: false, status: 0, data: {}, path };
+}
 
 export function getAuthHeader() {
   const currentUser = getCurrentUser();

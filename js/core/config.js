@@ -14,8 +14,8 @@ export const THEME_STORAGE_KEY = "siteTheme";
 export const AUTH_STORAGE_KEY = "dscCurrentUser";
 export const OWNER_ACCESS_CACHE_KEY = "dscOwnerAccessCache";
 export const OWNER_ACCESS_TTL_MS = 5 * 60 * 1000;
-export const ADMIN_PAGES = new Set(["Alogin.html", "Adash.html", "OwnerDB.html", "add.html"]);
-export const PUBLIC_PAGES = new Set(["index.html", "Ulogin.html", "checkout.html", "freepanel.html"]);
+export const ADMIN_PAGES = new Set(["Alogin.html", "Adash.html", "OwnerDB.html", "generateKey.html"]);
+export const PUBLIC_PAGES = new Set(["index.html", "Ulogin.html", "checkout.html", "freepanel.html", "privacy-policy.html"]);
 export const JWT_ROLE_KEYS = [
   "role",
   "roles",
