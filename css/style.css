@@ -1099,6 +1099,76 @@ tbody tr:hover { background: var(--surface-hover); }
   min-width: 132px;
 }
 
+/* =========================================
+   15. PAGE-SPECIFIC STATIC COMPONENTS
+   ========================================= */
+.free-panel-card {
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.free-panel-icon-60 {
+  width: 60px;
+  height: 60px;
+  margin: 0 auto;
+}
+
+.free-panel-select-all { user-select: all; }
+.free-panel-text-left { text-align: left; }
+
+.free-panel-skeleton-title {
+  height: 26px;
+  width: 60%;
+  margin: 0 auto 10px;
+  border-radius: 4px;
+}
+
+.free-panel-skeleton-label {
+  height: 12px;
+  width: 35%;
+  margin-bottom: 5px;
+  border-radius: 4px;
+}
+
+.free-panel-skeleton-value {
+  height: 20px;
+  width: 45%;
+  border-radius: 4px;
+}
+
+.free-panel-skeleton-button {
+  color: transparent !important;
+  border-color: transparent !important;
+  pointer-events: none;
+}
+
+.free-panel-skeleton-progress-label {
+  height: 12px;
+  width: 30%;
+  border-radius: 4px;
+}
+
+.free-panel-skeleton-progress-value {
+  height: 12px;
+  width: 15%;
+  border-radius: 4px;
+}
+
+.free-panel-skeleton-progress-bar {
+  height: 100%;
+  width: 100%;
+  border-radius: 999px;
+}
+
+.not-found-hero {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.not-found-actions { justify-content: center; }
+.products-intro { margin: 0 auto 28px; }
+
 @media (max-width: 520px) {
   .status-layout {
     width: 100%;

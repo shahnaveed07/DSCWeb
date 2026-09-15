@@ -9,23 +9,6 @@
   
   <link rel="stylesheet" href="../css/style.css">
   <link rel="icon" href="../images/dsclogo.png">
-<style>
-    /* Local Page Styles & Skeleton Structure (Replaces all Inline CSS) */
-    .auth-card-limited { max-width: 500px; margin: 0 auto; }
-    .w-full { width: 100%; }
-    .icon-60 { width: 60px; height: 60px; margin: 0 auto; }
-    .select-all { user-select: all; }
-    .text-left { text-align: left; }
-
-    /* Skeleton Specific Classes */
-    .sk-title { height: 26px; width: 60%; margin: 0 auto 10px auto; border-radius: 4px; }
-    .sk-label { height: 12px; width: 35%; margin-bottom: 5px; border-radius: 4px; }
-    .sk-value { height: 20px; width: 45%; border-radius: 4px; }
-    .sk-btn { color: transparent !important; border-color: transparent !important; pointer-events: none; }
-    .sk-progress-lbl { height: 12px; width: 30%; border-radius: 4px; }
-    .sk-progress-val { height: 12px; width: 15%; border-radius: 4px; }
-    .sk-progress-bar { height: 100%; width: 100%; border-radius: 999px; }
-  </style>
 </head>
 
 <body>
@@ -41,41 +24,41 @@
   </header>
 
   <main class="center-wrap">
-    <section class="auth-card auth-card-limited">
+    <section class="auth-card free-panel-card">
       <h1 class="auth-title text-center text-xl">Free Panel Access</h1>
       <p class="muted text-center mb-25">Get instant access to the free panel. Limited slots available!</p>
 
       <div id="freePanelLoader" class="stack w-full">
         <div class="stat-card border-surface mb-15 text-center">
           
-          <div class="skeleton-anim sk-title"></div>
+          <div class="skeleton-anim free-panel-skeleton-title"></div>
 
           <div class="credentials-box">
-            <div class="skeleton-anim sk-label text-left"></div>
+            <div class="skeleton-anim free-panel-skeleton-label free-panel-text-left"></div>
             <div class="credential-row mb-15">
-              <div class="skeleton-anim sk-value"></div>
-              <div class="skeleton-anim btn btn-neutral sk-btn">Copy</div>
+              <div class="skeleton-anim free-panel-skeleton-value"></div>
+              <div class="skeleton-anim btn btn-neutral free-panel-skeleton-button">Copy</div>
             </div>
 
-            <div class="skeleton-anim sk-label text-left"></div>
+            <div class="skeleton-anim free-panel-skeleton-label free-panel-text-left"></div>
             <div class="credential-row">
-              <div class="skeleton-anim sk-value"></div>
-              <div class="skeleton-anim btn btn-neutral sk-btn">Copy</div>
+              <div class="skeleton-anim free-panel-skeleton-value"></div>
+              <div class="skeleton-anim btn btn-neutral free-panel-skeleton-button">Copy</div>
             </div>
           </div>
 
           <div class="progress-container">
             <div class="progress-header">
-              <div class="skeleton-anim sk-progress-lbl"></div>
-              <div class="skeleton-anim sk-progress-val"></div>
+              <div class="skeleton-anim free-panel-skeleton-progress-label"></div>
+              <div class="skeleton-anim free-panel-skeleton-progress-value"></div>
             </div>
             <div class="progress-track">
-              <div class="skeleton-anim sk-progress-bar"></div>
+              <div class="skeleton-anim free-panel-skeleton-progress-bar"></div>
             </div>
           </div>
 
         </div>
-        <div class="skeleton-anim btn btn-block btn-large mt-15 sk-btn">Download Panel</div>
+        <div class="skeleton-anim btn btn-block btn-large mt-15 free-panel-skeleton-button">Download Panel</div>
       </div>
 
       <div id="freePanelContent" class="stack d-none">
@@ -85,15 +68,15 @@
             <p class="text-success fw-bold text-lg mb-10">🟢 PANEL IS AVAILABLE</p>
 
             <div class="credentials-box">
-              <p class="muted text-small mb-5 text-left">Available Username</p>
+              <p class="muted text-small mb-5 free-panel-text-left">Available Username</p>
               <div class="credential-row mb-15">
-                <h3 class="font-orbitron tracking-wide select-all" id="displayFreeUser">---</h3>
+                <h3 class="font-orbitron tracking-wide free-panel-select-all" id="displayFreeUser">---</h3>
                 <button type="button" class="btn btn-neutral" id="copyUserBtn">Copy</button>
               </div>
 
-              <p class="muted text-small mb-5 text-left">Available Password</p>
+              <p class="muted text-small mb-5 free-panel-text-left">Available Password</p>
               <div class="credential-row">
-                <h3 class="font-orbitron tracking-wide select-all" id="displayFreePass">---</h3>
+                <h3 class="font-orbitron tracking-wide free-panel-select-all" id="displayFreePass">---</h3>
                 <button type="button" class="btn btn-neutral" id="copyPassBtn">Copy</button>
               </div>
             </div>
@@ -114,7 +97,7 @@
         </div>
 
         <div id="freeFullMsg" class="key-result instruction-box text-center border-danger d-none mt-15">
-          <div class="modal-icon-box modal-icon-danger mb-15 icon-60">
+          <div class="modal-icon-box modal-icon-danger mb-15 free-panel-icon-60">
             <svg width="30" height="30" fill="none" stroke="#ef4444" stroke-width="2" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path>
             </svg>
