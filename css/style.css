@@ -308,7 +308,18 @@ a {
   letter-spacing: 0.04em; color: var(--text);
   white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
 }
-.header-actions { display: flex; align-items: center; gap: 10px; }
+.header-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; }
+.current-page-label {
+  margin-right: auto;
+  max-width: 180px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: var(--primary);
+  font-size: 0.95rem;
+  font-weight: 700;
+}
+.current-page-label:empty { display: none; }
 .menu-container { position: relative; }
 .menu-toggle { gap: 8px; }
 .menu-panel {
@@ -941,6 +952,7 @@ tbody tr:hover { background: var(--surface-hover); }
   .maintenance-buttons .btn { width: 100%; text-align: center; justify-content: center; }
   .btn-download .hide-mobile { display: none; }
   .header-actions { gap: 8px; }
+  .current-page-label { max-width: 120px; font-size: 0.85rem; }
   .btn-download, .header-actions .btn { padding: 8px 12px; font-size: 0.85rem; }
 }
 

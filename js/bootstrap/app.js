@@ -156,7 +156,17 @@ function startPageAnimation() {
   });
 }
 
+function syncCurrentPageLabels() {
+  document.querySelectorAll("[data-current-page-label]").forEach((label) => {
+    const header = label.closest(".site-header");
+    const activeLink = header?.querySelector("#primary-menu .nav-link.active");
+    const pageLabel = String(activeLink?.textContent || label.dataset.pageLabel || "").trim();
+    if (pageLabel) label.textContent = pageLabel;
+  });
+}
+
 function runBootstraps() {
+  syncCurrentPageLabels();
   bootstrapCoreApp();
   startPageAnimation();
   bootstrapAdminApp();

@@ -26,6 +26,7 @@ export function getCurrentPageName() {
   if (filename.includes("checkout")) return "checkout.html";
   if (filename.includes("freepanel")) return "freepanel.html";
   if (filename.includes("change")) return "change.html";
+  if (filename.includes("status")) return "status.html";
 
   return "index.html";
 }

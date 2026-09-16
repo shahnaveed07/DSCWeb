@@ -20,18 +20,25 @@
         <img src="../images/dsclogo.png" alt="Dark Skull Corporation logo" class="header-logo-img" />
         <span class="logo-text">Dark Skull Corporation</span>
       </a>
-      <nav class="nav-links" aria-label="Primary navigation">
-        <a class="nav-link" href="../index.html">Home</a>
-        <a class="nav-link" href="apps.html">Apps</a>
-        <a class="nav-link" href="products.html">Products</a>
-        <a class="nav-link" href="downloads.html">Downloads</a>
-        <a class="nav-link" href="about.html">About</a>
-        <a class="nav-link active" href="contact.html">Contact</a>
-        <a class="nav-link" href="privacy-policy.html">Privacy Policy</a>
-      </nav>
       <div class="header-actions">
+        <span class="current-page-label" data-current-page-label></span>
         <button type="button" id="theme-toggle-btn" class="btn btn-neutral theme-toggle" data-theme-toggle>Light Mode</button>
         <a class="btn btn-primary" href="Ulogin.html">Login</a>
+        <div class="menu-container">
+          <button type="button" class="btn btn-neutral menu-toggle" data-menu-toggle aria-expanded="false" aria-controls="primary-menu">
+            <span aria-hidden="true">☰</span>
+            <span>Menu</span>
+          </button>
+          <nav id="primary-menu" class="menu-panel" aria-label="Primary navigation" hidden>
+            <a class="nav-link" href="../index.html">Home</a>
+            <a class="nav-link" href="apps.html">Apps</a>
+            <a class="nav-link" href="products.html">Products</a>
+            <a class="nav-link" href="downloads.html">Downloads</a>
+            <a class="nav-link" href="about.html">About</a>
+            <a class="nav-link active" href="contact.html">Contact</a>
+            <a class="nav-link" href="https://discord.gg/XB2Zjmsb7K" target="_blank" rel="noopener noreferrer">Discord</a>
+          </nav>
+        </div>
       </div>
     </header>
 

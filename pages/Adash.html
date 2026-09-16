@@ -1,4 +1,4 @@
-﻿<!doctype html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -22,6 +22,7 @@
         <span class="logo-text">Dark Skull Corporation</span>
       </a>
       <div class="header-actions">
+        <span class="current-page-label" data-current-page-label data-page-label="Admin Dashboard">Admin Dashboard</span>
         <button
           type="button"
           id="theme-toggle-btn"
@@ -34,6 +35,21 @@
           Change Password
         </button>
         <button type="button" class="btn btn-outline js-logout">Logout</button>
+        <div class="menu-container">
+          <button type="button" class="btn btn-neutral menu-toggle" data-menu-toggle aria-expanded="false" aria-controls="primary-menu">
+            <span aria-hidden="true">☰</span>
+            <span>Menu</span>
+          </button>
+          <nav id="primary-menu" class="menu-panel" aria-label="Primary navigation" hidden>
+            <a class="nav-link" href="../index.html">Home</a>
+            <a class="nav-link" href="apps.html">Apps</a>
+            <a class="nav-link" href="products.html">Products</a>
+            <a class="nav-link" href="downloads.html">Downloads</a>
+            <a class="nav-link" href="about.html">About</a>
+            <a class="nav-link" href="contact.html">Contact</a>
+            <a class="nav-link" href="https://discord.gg/XB2Zjmsb7K" target="_blank" rel="noopener noreferrer">Discord</a>
+          </nav>
+        </div>
       </div>
     </header>
 
