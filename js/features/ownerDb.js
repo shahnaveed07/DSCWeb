@@ -679,7 +679,7 @@ export async function handleOwnerDBSave() {
 
     payload = buildSettingsPayload(overrides);
     } else if (currentDbTable === "panelUpdates") {
-    endpoint = "/api/admin/panel-updates/save";
+    endpoint = "/api/auth/panel-updates/save";
     payload = {
       update1: document.getElementById("dbUpd1")?.value || "",
       update2: document.getElementById("dbUpd2")?.value || "",
