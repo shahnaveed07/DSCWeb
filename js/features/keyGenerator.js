@@ -6,7 +6,12 @@ export async function handleGenerateKey(event) {
   event.preventDefault();
 
   const plan = String(document.getElementById("planName")?.value || "").trim();
-  const validDays = Number.parseInt(document.getElementById("validDays")?.value || "0", 10);
+  const validDays = Number.parseInt(
+    document.getElementById("validDays")?.value || "0",
+    10,
+  );
+
+  const keyResult = document.getElementById("keyResult");
   const generatedKeyValue = document.getElementById("generatedKeyValue");
   const copyKeyBtn = document.getElementById("copyKeyBtn");
 
@@ -15,39 +20,104 @@ export async function handleGenerateKey(event) {
     return;
   }
 
+  /*
+   * Keep the result hidden while generating.
+   * This also prevents an old key from remaining visible
+   * if the user generates another key.
+   */
+  keyResult?.classList.add("d-none");
+
+  if (generatedKeyValue) {
+    generatedKeyValue.textContent = "--";
+    generatedKeyValue.classList.remove("text-success");
+  }
+
   Core.showLoader("Generating key...");
 
   try {
     const result = await Core.requestJson("/api/admin/generate", {
       method: "POST",
       headers: Core.getAuthHeader(),
-      body: { plan, validDays }
+      body: {
+        plan,
+        validDays,
+      },
     });
 
     Core.hideLoader();
-    if (Core.handleAdminAuthFailure(result.status)) return;
-    if (!result.ok) {
-      Core.showMessage(Core.extractErrorMessage(result.data, "Failed to generate key."), "error");
+
+    if (Core.handleAdminAuthFailure(result.status)) {
       return;
     }
 
-    if (generatedKeyValue) {
-      generatedKeyValue.textContent = String(result.data.key || "--");
-      generatedKeyValue.classList.add("text-success");
-    }
-    if (copyKeyBtn) {
-      copyKeyBtn.style.display = "block";
-      copyKeyBtn.onclick = () => Core.copyTextToClipboard(generatedKeyValue?.textContent || "", copyKeyBtn, "Copy Key");
+    if (!result.ok) {
+      Core.showMessage(
+        Core.extractErrorMessage(result.data, "Failed to generate key."),
+        "error",
+      );
+      return;
     }
 
+    const key = String(result.data?.key || "").trim();
+
+    if (!key) {
+      Core.showMessage("Server returned an invalid key.", "error");
+      return;
+    }
+
+    /*
+     * Put the generated key into the result field.
+     */
+    if (generatedKeyValue) {
+      generatedKeyValue.textContent = key;
+      generatedKeyValue.classList.add("text-success");
+    }
+
+    /*
+     * This is the ONLY point where the result box becomes visible.
+     * Since Copy Key is inside this box, both appear together.
+     */
+    keyResult?.classList.remove("d-none");
+
+    /*
+     * Copy button handler.
+     */
+    if (copyKeyBtn) {
+      copyKeyBtn.onclick = () => {
+        Core.copyTextToClipboard(
+          generatedKeyValue?.textContent?.trim() || "",
+          copyKeyBtn,
+          "Copy Key",
+        );
+      };
+    }
+
+    /*
+     * Reset only the input form.
+     * Generated result remains visible.
+     */
     document.getElementById("generateKeyForm")?.reset();
+
     Core.showMessage("Key generated successfully.", "success");
   } catch (err) {
     Core.hideLoader();
-    Core.showMessage(Core.isAbortError(err) ? "Request timed out. Try again." : "Server error.", "error");
+
+    /*
+     * Never leave an old/stale result visible after failure.
+     */
+    keyResult?.classList.add("d-none");
+
+    Core.showMessage(
+      Core.isAbortError(err)
+        ? "Request timed out. Try again."
+        : "Server error.",
+      "error",
+    );
   }
 }
 
 export function bindGenerateKeyControls() {
-  document.getElementById("generateKeyForm")?.addEventListener("submit", handleGenerateKey);
+  document
+    .getElementById("generateKeyForm")
+    ?.addEventListener("submit", handleGenerateKey);
 }
